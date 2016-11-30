@@ -54,3 +54,11 @@ ggmanHighlight(p1, highlight = highlights, colour="red")
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/Manhattan.highlights.png)
+
+### Plots Odds Ratio instead of P values
+
+```
+ggman(gwas, snp = "SNP", bp = "BP", pvalue = "OR", chrom = "CHR", logTransform = FALSE, ymax = 3)
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/or_plot.png)
