@@ -16,6 +16,15 @@ install_github("veera-dr/ggman")
 
 ```
 head(gwas)
+
+  CHR     SNP BP      P     OR
+1   1   rs1_0  1 0.2954 1.1050
+2   1 rs1_0_M  2 0.9296 0.9922
+3   1   rs1_1  3 0.8162 1.0160
+4   1 rs1_1_M  4 0.6669 0.9719
+5   1   rs1_2  5 0.4310 0.9426
+6   1 rs1_2_M  6 0.3743 1.0580
+>
 ```
 
 ### Create a basic Manhattan plot 
