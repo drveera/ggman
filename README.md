@@ -12,7 +12,7 @@ install_github("veera-dr/ggman")
 
 ##Usage 
 
-### example data 
+### Example data 
 
 ```
 head(gwas)
@@ -21,5 +21,7 @@ head(gwas)
 ### Create a basic Manhattan plot 
 
 ```
-ggman(gwas, snp = "SNP", bp = "BP", chr = "CHR", pvalue = "P")
+ggman(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P")
 ```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/manhattan.basic.png)
