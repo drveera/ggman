@@ -46,3 +46,11 @@ ggmanLabel(p1,labelDfm = gwas.sig, snp = "SNP", label = "SNP")
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/manhattan.labelled.png)
+
+### Highlight markers
+
+```
+ggmanHighlight(p1, highlight = highlights, colour="red")
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/Manhattan.highlights.png)
