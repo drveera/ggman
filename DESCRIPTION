@@ -6,4 +6,5 @@ Description: A ggPlot  wrapper to create Manhattan Plots
 Author: Veera M Rajagopal <veera.ipsych@gmail.com>
 Maintainer: Veera M Rajagopal <veera.ipsych@gmail.com>
 RoxygenNote: 5.0.1
+LazyData: true
 License: GPL-3
