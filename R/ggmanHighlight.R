@@ -13,11 +13,11 @@
 #'
 #' @export
 ggmanHighlight <- function(ggmanPlot, highlight,
-                           colour = "green",
+                           colour = "red",
                            pointSize = 0.1){
     dfm <- ggmanPlot[[1]]
     dfm <- dfm[dfm$snp %in% highlight,]
     ggmanPlot +
-        scale_colour_grey() +
+        scale_colour_grey(start = 0.5,end = 0.6) +
         geom_point(data = dfm,colour = colour, size = pointSize)
 }
