@@ -1,0 +1,9 @@
+Package: ggman
+Version: 0.1
+Date: 2016-11-28
+Title: R package for Manhattan Plots
+Description: A ggPlot  wrapper to create Manhattan Plots
+Author: Veera M Rajagopal <veera.ipsych@gmail.com>
+Maintainer: Veera M Rajagopal <veera.ipsych@gmail.com>
+RoxygenNote: 5.0.1
+License: GPL-3
