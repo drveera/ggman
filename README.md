@@ -1,4 +1,4 @@
 
 
 
-> Written with [StackEdit](https://stackedit.io/).
+# R package to create manhattan plots using ggplot 
