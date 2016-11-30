@@ -3,6 +3,9 @@
 
 # R package to create manhattan plots using ggplot 
 
+##Note: 
+The package is currently under development.  Please raise issues for any bugs you identify.
+
 ## Installation
 
 ```
