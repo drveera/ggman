@@ -1,1 +1,4 @@
-#An R Package to create Manhattan plots using ggplot
+
+
+
+> Written with [StackEdit](https://stackedit.io/).
