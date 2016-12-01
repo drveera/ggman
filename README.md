@@ -80,10 +80,18 @@ p4
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/multi%20highlights.png)
 
-### Plots Odds Ratio instead of P values
+### Plot Odds Ratio instead of P values
 
 ```
-ggman(gwas, snp = "SNP", bp = "BP", pvalue = "OR", chrom = "CHR", logTransform = FALSE, ymax = 3)
+ggman(gwas, snp = "SNP", bp = "BP", pvalue = "OR", chrom = "CHR", logTransform = FALSE, ymax = 3, ylab = "Odds Ratio")
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/or_plot.png)
+
+### Inverted Manhattan Plot
+
+```
+ggmanInvert(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P", effect = "OR", method = "or")
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/inverted.manhattan.png)
