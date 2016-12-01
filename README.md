@@ -58,6 +58,28 @@ ggmanHighlight(p1, highlight = highlights, colour="red")
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/Manhattan.highlights.png)
 
+### Add multiple highlights
+
+```
+p1 <- ggman(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P")
+
+## add first highlights
+p2 <- ggmanHighlight(p1, highlight = highlights, colour = "red")
+
+## Lets create some more vectors of SNPs to highlight
+
+highlights2 <- with(gwas, SNP[grep("rs06",SNP)])
+highlights3 <- with(gwas, SNP[grep("rs0011",SNP)])
+
+## add highlights
+
+p3 <- ggmanHighlight(p2, highlight = highlights2, colour = "orange")
+p4 <- ggmanHighlight(p3, highlight = highlights3, colour = "green4")
+p4
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/multi%20highlights.png)
+
 ### Plots Odds Ratio instead of P values
 
 ```
