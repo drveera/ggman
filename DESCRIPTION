@@ -7,4 +7,10 @@ Author: Veera M Rajagopal <veera.ipsych@gmail.com>
 Maintainer: Veera M Rajagopal <veera.ipsych@gmail.com>
 RoxygenNote: 5.0.1
 LazyData: true
+depends:
+	R (>= 3.1),
+	ggplot2 (>= 2.0.0),
+	ggrepel (>= 0.6.5)
+imports:
+	gtools
 License: GPL-3
