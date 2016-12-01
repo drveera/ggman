@@ -4,7 +4,7 @@
 \alias{ggmanHighlight}
 \title{Highlight markers in Manhattan plot}
 \usage{
-ggmanHighlight(ggmanPlot, highlight, colour = "green", pointSize = 0.1)
+ggmanHighlight(ggmanPlot, highlight, colour = "red", pointSize = 0.1)
 }
 \arguments{
 \item{ggmanPlot}{A ggman plot}

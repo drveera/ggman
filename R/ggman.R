@@ -17,6 +17,9 @@
 #' @param xlabel x axis label
 #' @param ylabel y  axis label
 #' @param title plot title
+#'
+#' @importFrom gtools mixedorder
+#' 
 #' @return If unassigned to a variable, returns a manhattan plot; If assigned to a variable, stored as a ggplot layer
 #'
 #' @examples
@@ -42,7 +45,7 @@ ggman <- function(gwas,
     dfm$chrom <- as.character(dfm$chrom)
 
     ##add index
-    library(gtools)
+    #library(gtools)
     dfm <- dfm[order(dfm$bp),]
     dfm <- dfm[mixedorder(dfm$chrom),]
     dfm$index <- 1:nrow(dfm)
