@@ -31,7 +31,7 @@ ggman <- function(gwas,
                   sigLine = 8,
                   lineColor = "red",
                   pointSize = 0.1,
-                  ymin = 0, ymax = 10,
+                  ymin = 0, ymax = NA,
                   logTransform = TRUE,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot") {
     library(ggplot2)
@@ -69,6 +69,10 @@ ggman <- function(gwas,
         dfm$marker <- dfm$pvalue
     }
 
+    if (is.na(ymax)){
+        ymax <- max(-log10(dfm$pvalue)) + 1
+    }
+
 
     if (!is.na(clumps)[1]){
         if (!any(class(clumps) == "ggclumps")) {
@@ -77,13 +81,22 @@ ggman <- function(gwas,
         }
         clumpedSnps <- unlist(clumps)
         indexSnps <- names(clumps)
+
+        ##index snps subset
+        index.dfm <- dfm[dfm$snp %in% indexSnps,]
+        
         clumpedSnps <- c(clumpedSnps, indexSnps )
         index <- dfm$index
         names(index) <- dfm$snp
+
+        pb <- txtProgressBar(min = 0, max = length(indexSnps), style = 3)
+        j = 0
         for (i in indexSnps){
-            cat (i,":",index[i],"\n")
             index <- replace(index, names(index) %in% clumps[[which(names(clumps) == i)]], index[i])
+            j = j + 1
+            setTxtProgressBar(pb, j)
         }
+        close(pb)
         dfm$index <- index
         dfm.sub <- dfm[dfm$snp %in% clumpedSnps,]
         dfm.index <- dfm[dfm$snp %in% indexSnps,]
@@ -94,8 +107,9 @@ ggman <- function(gwas,
             geom_hline(aes(yintercept= as.numeric(sigLine)),colour = "red", size = 0.25) +
             scale_y_continuous(expand = c(0,0), limits = c(ymin,ymax))  +
             guides(colour = FALSE) +
-            scale_colour_grey() +
-            geom_point(data = dfm.sub, size=2, colour = "brown") +
+            scale_colour_grey(start = 0.4,end=0.6) +
+            geom_point(data = dfm.sub, size=pointSize, colour = "blue") +
+            geom_point(data = index.dfm, size = pointSize+1, colour = "blue", shape = 5) +
             labs(x = xlabel, y = ylabel, title = title)
     } else {
         ggplot(dfm, aes(index,marker, colour = as.factor(chrom_alt))) +
