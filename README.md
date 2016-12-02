@@ -104,7 +104,7 @@ It's possible to add clumps to the Manhattan plot. The following demonstration u
 
 #### Step 1
 
-Clump the summary file, using plink's `--clump` function. The following settings were used.
+Clump the summary file, using plink's `--clump` function.  Here, for the demonstration, the summary file was clumped using hapmap-phase-1 genotypes. The following settings were used.
 
 ```
 --clump-p1 0.00000001
@@ -123,7 +123,7 @@ plot.clumps <- ggClumps(plink.clumps)
 
 #### Step 3
 
-Create Manhattan plots along with clumps. 
+Create Manhattan plot along with clumps. 
 
 ```
 ggman(hrgwas, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P", clumps = clump4, ymin = 2)
