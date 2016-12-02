@@ -95,3 +95,38 @@ ggmanInvert(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P", effect = 
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/inverted.manhattan.png)
+
+### Manhattan plot with clumps 
+
+It's possible to add clumps to the Manhattan plot. The following demonstration uses real data set from the paper den Hoed M et al (summary data available @ https://walker05.u.hpc.mssm.edu/ )
+
+**Reference**: den Hoed M et al. Identification of heart rate-associated loci and their effects on cardiac conduction and rhythm disorders. Nat Genet 45 (6); 621-631
+
+#### Step 1
+
+Clump the summary file, using plink's `--clump` function. The following settings were used.
+
+```
+--clump-p1 0.00000001
+--clump-r2 0.1
+--clump-kb 1000
+``` 
+
+#### Step 2
+
+Create the `ggclumps` object, using the `ggClumps()` function. 
+
+```
+plink.clumps <- read.table("plink.clumped", header = TRUE)
+plot.clumps <- ggClumps(plink.clumps)
+```
+
+#### Step 3
+
+Create Manhattan plots along with clumps. 
+
+```
+ggman(hrgwas, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P", clumps = clump4, ymin = 2)
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/hr.gwas.clumps.png)
