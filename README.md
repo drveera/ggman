@@ -115,6 +115,7 @@ ggman(hrgwas, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P", clumps = clu
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/hr.gwas.clumps.png)
 
+Hoed M et al 2013, Nat Genet 45 (6); 621-631
 
 ### Inverted Manhattan Plot
 
