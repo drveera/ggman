@@ -33,6 +33,7 @@ ggman <- function(gwas,
                   pointSize = 0.1,
                   ymin = 0, ymax = NA,
                   logTransform = TRUE,
+                  relative.positions = FALSE,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot") {
     library(ggplot2)
     library(ggrepel)
@@ -59,10 +60,6 @@ ggman <- function(gwas,
     dfm$chrom_alt <- replace(dfm$chrom, dfm$chrom %in% oddchrom, 0)
     dfm$chrom_alt <- replace(dfm$chrom_alt, dfm$chrom_alt != 0,1)
 
-    ##create x axis tick points
-    dfmsplit <- split(dfm, dfm$chrom)
-    xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
-
     if(logTransform){
         dfm$marker <- -log10(dfm$pvalue)
     } else {
@@ -73,11 +70,38 @@ ggman <- function(gwas,
         ymax <- max(-log10(dfm$pvalue)) + 1
     }
 
+    if(relative.positions == TRUE){
+        relpos <- function(x,minbp,maxbp,nrows,startingpoint){
+            actual.distance <- (x - minbp)
+            relative.distance <- (actual.distance*nrows)/maxbp
+            return(relative.distance + startingpoint)
+        }
+        dfm$chrom <- factor(dfm$chrom, levels = chrtable$Var1)
+        dfm.split <- split(dfm, dfm$chrom)
+        startingpoint = 1
+        j = 1
+        dfm.list <- lapply(dfm.split, function(x){         
+            minbp <- as.numeric(min(x$bp))
+            maxbp <- as.numeric(max(x$bp))
+            nrows <- as.numeric(nrow(x))
+            x$index <- relpos(x$bp,minbp,maxbp,nrows,startingpoint)
+            startingpoint <<- startingpoint + nrows + 1
+            j <<- j +1
+            print(x[1:4,])
+            return(x)
+        })
+        dfm <- do.call(rbind,dfm.list)
+        
+    }
 
+    ##create x axis tick points
+    dfmsplit <- split(dfm, dfm$chrom)
+    xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
+    
     if (!is.na(clumps)[1]){
         if (!any(class(clumps) == "ggclumps")) {
-            cat("clumps argument takes an object of class ggclumps;see readClumps function")
-            q()
+            cat("clumps argument takes an object of class ggclumps;see ggClumps function")
+            return(NULL)
         }
         clumpedSnps <- unlist(clumps)
         indexSnps <- names(clumps)
