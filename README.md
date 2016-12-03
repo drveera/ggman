@@ -3,23 +3,23 @@
 
 # R package to create manhattan plots using ggplot 
 
-**Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
+
 
 - [R package to create manhattan plots using ggplot](#)
-	- [Note:](#)
-	- [Installation](#)
-	- [Usage](#)
-		- [Example data](#)
-		- [Create a basic Manhattan plot](#)
-		- [Add labels to Manhattan plot](#)
-		- [Highlight markers](#)
+	- [Note:](#note)
+	- [Installation](#installation)
+	- [Usage](#usage)
+		- [Example data](#example-data)
+		- [Create a basic Manhattan plot](#create-a-basic-manhattan-plot)
+		- [Add labels to Manhattan plot](#add-labels-to-manhattan-plot)
+		- [Highlight markers](#highlight-markers)
 		- [Add multiple highlights](#add-multiple-highlights)
 		- [Manhattan plot with clumps](#)
 			- [Step 1](#step-1)
-			- [Step 2](#)
-			- [Step 3](#)
-		- [Inverted Manhattan Plot](#)
-		- [Plot Odds Ratio instead of P values](#)
+			- [Step 2](#step-2)
+			- [Step 3](#step-3)
+		- [Inverted Manhattan Plot](#inverted-manhattan-plot)
+		- [Plot Odds Ratio instead of P values](#plot-odds-ratio-instead-of-p-values)
 
 ##Note: 
 The package is currently under development.  Please raise issues for any bugs you identify.
