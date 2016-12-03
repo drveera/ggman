@@ -22,7 +22,7 @@
 		- [Plot Odds Ratio instead of P values](#plot-odds-ratio-instead-of-p-values)
 
 ##Note: 
-The package is currently under development.  Please raise issues for any bugs you identify.
+The package is currently under development. The build is not stable and undergoes frequent commits.  Please raise issues for any bugs you identify.
 
 ## Installation
 
