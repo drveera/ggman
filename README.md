@@ -80,22 +80,6 @@ p4
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/multi%20highlights.png)
 
-### Plot Odds Ratio instead of P values
-
-```
-ggman(gwas, snp = "SNP", bp = "BP", pvalue = "OR", chrom = "CHR", logTransform = FALSE, ymax = 3, ylab = "Odds Ratio")
-```
-
-![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/or_plot.png)
-
-### Inverted Manhattan Plot
-
-```
-ggmanInvert(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P", effect = "OR", method = "or")
-```
-
-![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/inverted.manhattan.png)
-
 ### Manhattan plot with clumps 
 
 It's possible to add clumps to the Manhattan plot. The following demonstration uses real data set from the paper den Hoed M et al (summary data available @ https://walker05.u.hpc.mssm.edu/ )
@@ -130,3 +114,21 @@ ggman(hrgwas, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P", clumps = clu
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/hr.gwas.clumps.png)
+
+
+### Inverted Manhattan Plot
+
+```
+ggmanInvert(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P", effect = "OR", method = "or")
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/inverted.manhattan.png)
+
+
+### Plot Odds Ratio instead of P values
+
+```
+ggman(gwas, snp = "SNP", bp = "BP", pvalue = "OR", chrom = "CHR", logTransform = FALSE, ymax = 3, ylab = "Odds Ratio")
+```
+
+![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/or_plot.png)
