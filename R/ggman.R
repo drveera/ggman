@@ -79,15 +79,12 @@ ggman <- function(gwas,
         dfm$chrom <- factor(dfm$chrom, levels = chrtable$Var1)
         dfm.split <- split(dfm, dfm$chrom)
         startingpoint = 1
-        j = 1
         dfm.list <- lapply(dfm.split, function(x){         
             minbp <- as.numeric(min(x$bp))
             maxbp <- as.numeric(max(x$bp))
             nrows <- as.numeric(nrow(x))
             x$index <- relpos(x$bp,minbp,maxbp,nrows,startingpoint)
             startingpoint <<- startingpoint + nrows + 1
-            j <<- j +1
-            print(x[1:4,])
             return(x)
         })
         dfm <- do.call(rbind,dfm.list)

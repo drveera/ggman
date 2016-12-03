@@ -3,5 +3,7 @@
 export(ggClumps)
 export(ggman)
 export(ggmanHighlight)
+export(ggmanInvert)
 export(ggmanLabel)
+export(ggmanZoom)
 importFrom(gtools,mixedorder)
