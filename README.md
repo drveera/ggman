@@ -140,7 +140,7 @@ plot.clumps <- ggClumps(plink.clumps)
 Create Manhattan plot along with clumps. 
 
 ```
-ggman(hrgwas, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P", clumps = clump4, ymin = 2)
+ggman(hrgwas, clumps = plot.clumps, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P",  ymin = 2)
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/hr.gwas.clumps.png)
