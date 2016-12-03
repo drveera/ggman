@@ -14,7 +14,7 @@
 		- [Add labels to Manhattan plot](#add-labels-to-manhattan-plot)
 		- [Highlight markers](#highlight-markers)
 		- [Add multiple highlights](#add-multiple-highlights)
-		- [Manhattan plot with clumps](#)
+		- [Manhattan plot with clumps](#manhattan-plot-with-clumps)
 			- [Step 1](#step-1)
 			- [Step 2](#step-2)
 			- [Step 3](#step-3)
