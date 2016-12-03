@@ -15,7 +15,7 @@
 		- [Highlight markers](#)
 		- [Add multiple highlights](#)
 		- [Manhattan plot with clumps](#)
-			- [Step 1](#Step1)
+			- [Step 1](#step1)
 			- [Step 2](#)
 			- [Step 3](#)
 		- [Inverted Manhattan Plot](#)
