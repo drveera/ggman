@@ -56,6 +56,8 @@ ggman(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P")
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/manhattan.basic.png)
 
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
+
 ### Add labels to Manhattan plot 
 
 ```
@@ -68,6 +70,9 @@ ggmanLabel(p1,labelDfm = gwas.sig, snp = "SNP", label = "SNP")
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/manhattan.labelled.png)
 
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
+
+
 ### Highlight markers 
 
 ```
@@ -76,7 +81,9 @@ ggmanHighlight(p1, highlight = highlights, colour="red")
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/Manhattan.highlights.png)
 
-[go to top](#)
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
+
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
 
 ### Add multiple highlights
 
@@ -99,6 +106,9 @@ p4
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/multi%20highlights.png)
+
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
+
 
 ### Manhattan plot with clumps 
 
@@ -137,6 +147,9 @@ ggman(hrgwas, snp = "SNP", bp = "POS", chrom = "CHR", pvalue = "P", clumps = clu
 
 Reference: Hoed M et al 2013, Nat Genet 45 (6); 621-631
 
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
+
+
 ### Inverted Manhattan Plot
 
 ```
@@ -145,6 +158,7 @@ ggmanInvert(gwas, snp = "SNP", bp = "BP", chrom = "CHR", pvalue = "P", effect = 
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/inverted.manhattan.png)
 
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
 
 ### Plot Odds Ratio instead of P values
 
@@ -153,3 +167,5 @@ ggman(gwas, snp = "SNP", bp = "BP", pvalue = "OR", chrom = "CHR", logTransform =
 ```
 
 ![enter image description here](https://github.com/veera-dr/ggman/blob/master/data/or_plot.png)
+
+[go to top](#r-package-to-create-manhattan-plots-using-ggplot)
