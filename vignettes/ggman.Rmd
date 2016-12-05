@@ -9,15 +9,128 @@ output: html_document
 
 ### Create a basic Manhattan plot
 
+A toy GWAS dataset is made available along with the package. Let's look at the dimensions, head and tail of the dataset. 
+
+```{r}
+library(ggman)
+
+dim(toy.gwas)
+head(toy.gwas)
+tail(toy.gwas)
+```
+
+To create a Manhattan plot, only the first 4 columns (chrom,snp,bp,pvalue) are required. Specific preformatting of the column classes is not required. The chromosome identifiers can be either numbers (1,2,3..) or strings("Chr1","Chr2"..). 
+
+```{r}
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
+```
+
 ### Use relative positioning
+By enabling the relative positioning, the base pair positions will be scaled in proportion to the real genome positions. Hence, the gaps with no SNPs can be visualized. Be default this is not enabled. To use the relative positions, use the option `relative.positions = TRUE`
+
+```{r}
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE)
+```
+
 
 ### Add labels
+Specific set of points in the plot can be annotated by providing a data.frame with **only the SNPs those need to be labelled**.  Let's take a subset of the main data frame `toy.gwas`. 
+
+```{r}
+#subset only the SNPs with -log10(pvalue) > 8
+toy.gwas.sig <- toy.gwas[-log10(toy.gwas$pvalue)>8,]
+
+# dimensions
+dim(toy.gwas.sig)
+
+#head 
+head(toy.gwas.sig)
+```
+
+The main layer of Manhattan plot should be saved in a variable and provided subsequently to `ggmanLabel` function. 
+The name of the columns with snps and labels has to be supplied. In this case, we will label with SNP identifiers. 
+
+```{r}
+## save the main layer in a variable
+p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE)
+
+##add label
+ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp")
+
+```
+
+Annotations can be just text instead of labels. Use the `type=` argument. 
+```{r}
+#add text
+ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp", type = "text")
+```
+
+The R package `ggrepel` is used for annotations. All the arguments that are applicable to `geom_text_repel` and `geom_label_repel` can be passed on to `ggmanLabel`. Lets change the size and colour of the labels.
+
+```{r}
+ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp", colour = "black", size = 2)
+```
+
+
+**Caution: providing the whole main data frame as `labelDfm` will fill the entire plot with text or might crash the R if the data frame is too big**
 
 ### Highlight a single group of points
+The function `ggmanHighlight` can be used to highlight a single group of points. Be default, while highlighting specific points, the main layer of Manhattan plot is greyed out. We need to supply a vector object with SNP names to highlight. The example file `toy.highlights` comes along with package. 
+
+```{r}
+class(toy.highlights)
+length(toy.highlights)
+head(toy.highlights)
+
+ggmanHighlight(p1, highlight = toy.highlights)
+```
+
 
 ### Highlight multiple groups of points with a legend
+The function `ggmanHighlightGroup` can be used to highlight multiple groups of points and a legend can be added. Let's look at the example file `toy.highlights.group`. 
+
+```{r}
+class(toy.highlights.group)
+dim(toy.highlights.group)
+head(toy.highlights.group)
+```
+
+Unlike `ggmanHighllight`, the function `ggmanHighlightGroup` requires data.frame as an input. One of the column names should be supplied as a grouping variable. The size of the highlighted points can be changed with `size` argument. The legend title can be specified with `legend.title` argument. 
+
+```{r}
+ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", size = 0.5, legend.title = "Significant groups")
+```
+
+It is also possible to remove the legend using `legend.remove` argument. 
+
+```{r}
+ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", size = 0.5, legend.remove = TRUE)
+```
+
 
 ### Zoom in to a specific chromosome
+
+The function `ggmanZoom` can be used to create regional association plot. The chromosome and starting and ending basepair positions should be specified. If only the chromosome is specified, the whole chromosome will be shown. First, let's see the whole chromosome 1 plot.
+
+```{r}
+
+ggmanZoom(p1, chromosome = 1)
+
+```
+
+Next, let's zoom in to the chromosome 1 region containing genes: GENE21, GENE22 and GENE23.
+
+```{r}
+ggmanZoom(p1, chromosome = 1, start.position = 14209481, end.position = 238131450)
+```
+
+Let's highlight the genes and add a legend. 
+
+```{r}
+ggmanZoom(p1, chromosome = 1, start.position = 14209481, end.position = 238131450, highlight.group = "gene")
+```
+
+
 
 ### Zoom in to a specific region of a chromosome
 

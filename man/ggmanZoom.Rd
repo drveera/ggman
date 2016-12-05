@@ -4,8 +4,9 @@
 \alias{ggmanZoom}
 \title{ggmanZoom}
 \usage{
-ggmanZoom(ggmanPlot, chromosome, start.position, end.position, xlabel = NA,
-  ylabel = NA, title = NA, ...)
+ggmanZoom(ggmanPlot, chromosome, start.position = NA, end.position = NA,
+  xlabel = NA, ylabel = NA, title = NA, highlight.group = NA,
+  legend.title = NA, legend.remove = FALSE, ...)
 }
 \arguments{
 \item{ggmanPlot}{A ggplot object of class 'ggplot'}

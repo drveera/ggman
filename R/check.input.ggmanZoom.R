@@ -14,13 +14,17 @@ check.input.ggmanZoom <- function(){
     }
 
     ## start position
-    if(! is.numeric(start.position)){
+    if(! is.na(start.position)){
+            if(! is.numeric(start.position)){
         stop("The start.position is not numeric")
+            }
     }
 
     ## end.position
-    if(! is.numeric(end.position)){
-        stop("The end.position is not numeric")
+    if(! is.na(end.position)){
+        if(! is.numeric(end.position)){
+            stop("The end.position is not numeric")
+        }
     }
 
     ## xlabel

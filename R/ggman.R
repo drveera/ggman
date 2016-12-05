@@ -60,13 +60,13 @@ ggman <- function(gwas,
     ###check the inputs
     environment(check.input.ggman) <- environment()
     check.input.ggman()
-
-    gwas <- as.data.frame(gwas)
-    chrom <- gwas[,chrom]
-    bp <- as.numeric(as.character(gwas[,bp]))
-    pvalue <- as.numeric(as.character(gwas[,pvalue]))
-    snp <- gwas[,snp]
-    dfm <- data.frame(chrom,bp,snp,pvalue)
+    dfm <- gwas
+    dfm$gwas <- as.data.frame(gwas)
+    dfm$chrom <- gwas[,chrom]
+    dfm$bp <- as.numeric(as.character(gwas[,bp]))
+    dfm$pvalue <- as.numeric(as.character(gwas[,pvalue]))
+    dfm$snp <- gwas[,snp]
+    #dfm <- data.frame(chrom,bp,snp,pvalue)
     dfm$chrom <- as.character(dfm$chrom)
 
     ##add index
