@@ -1,4 +1,4 @@
-#' ggClumps
+#' ggmanClumps
 #'
 #' Process the clumped file from plink
 #'
@@ -7,13 +7,16 @@
 #' @examples
 #'
 #' @export
-ggClumps <- function(plink.clumped){
+ggmanClumps <- function(plink.clumped,
+                        index.snp = "index.snp",
+                        clumps = "clumps"
+                        ){
     x <- plink.clumped
-    clump.snps <- x$SP2
+    clump.snps <- x[,clumps]
     clump.snps <- as.character(clump.snps)
     clump.snps <- strsplit(clump.snps, split = ",")
     clump.snps <- lapply(clump.snps, function(x) gsub("\\(.*$","",x))
-    names(clump.snps) <- x$SNP
+    names(clump.snps) <- x[,index.snp]
     class(clump.snps) <- append(class(clump.snps), "ggclumps")
     return(clump.snps)
 }
