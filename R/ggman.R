@@ -107,7 +107,7 @@ ggman <- function(gwas,
             maxbp <- as.numeric(max(x$bp))
             nrows <- as.numeric(nrow(x))
             x$index <- relpos(x$bp,minbp,maxbp,nrows,startingpoint)
-            startingpoint <<- startingpoint + nrows + 1
+            startingpoint <<- max(x$index)+1          
             return(x)
         })
         dfm <- do.call(rbind,dfm.list)
