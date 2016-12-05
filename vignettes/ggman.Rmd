@@ -1,0 +1,30 @@
+---
+title: "ggman"
+author: "Veera M Rajagopal"
+date: "12/5/2016"
+output: html_document
+---
+
+## ggman: R package to create Manhattan plot using ggplot. 
+
+### Create a basic Manhattan plot
+
+### Use relative positioning
+
+### Add labels
+
+### Highlight a single group of points
+
+### Highlight multiple groups of points with a legend
+
+### Zoom in to a specific chromosome
+
+### Zoom in to a specific region of a chromosome
+
+### Highlight points in the zoomed region
+
+### Plot Odds ratio
+
+### Plot beta
+
+### Create an inverted Manhattan plot
