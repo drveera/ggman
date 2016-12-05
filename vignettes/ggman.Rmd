@@ -2,10 +2,14 @@
 title: "ggman"
 author: "Veera M Rajagopal"
 date: "12/5/2016"
-output: html_document
+output:
+  html_document:
+    toc: true
+    theme: united
 ---
 
 ## ggman: R package to create Manhattan plot using ggplot. 
+
 
 ### Create a basic Manhattan plot
 
@@ -107,37 +111,79 @@ It is also possible to remove the legend using `legend.remove` argument.
 ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", size = 0.5, legend.remove = TRUE)
 ```
 
+### Add SNP clumps 
+
+In a typical genome wide association study, it is a standard practice to display SNPs in linkage disequilibrium with the index SNP as clumps. The plink software has clumping procedure, which outputs clump file with `.clumped` extension.
+
+Adding clumps to Manhattan plot involves four steps. 
+
+1. Perform clumping using Plink `--clump` function
+2. Read the output file in to a data.frame. Suppose the name of the output file is `plink.clumped` then 
+```
+gwas.clump <- read.table("plink.clumped", header = TRUE)
+```
+Here, the example file `toy.clumped` is a data.frame, which is created by reading the plink.clumped file and subsetting only the columns 'SNP' and 'SP2'. 
+
+3. Convert the `toy.clumped` data.frame to a `ggclumps` object using the `ggmanClumps` function. The column names with the index SNPs (`SNP`) and clumps (`SP2`) have to be specified. 
+
+```{r}
+toy.clumps <- ggmanClumps(toy.clumped, index.snp = "SNP", clumps = "SP2") 
+```
+
+4. Pass the toy.clumped object to `clumps=` argument of `ggman` function. (Note: This step might take a while when large number of clumps are processed. A progress bar will be shown)
+
+```{r}
+ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
+```
+
+
+
+
 
 ### Zoom in to a specific chromosome
 
-The function `ggmanZoom` can be used to create regional association plot. The chromosome and starting and ending basepair positions should be specified. If only the chromosome is specified, the whole chromosome will be shown. First, let's see the whole chromosome 1 plot.
+The function `ggmanZoom` can be used to create regional association plot. Plotting a single chromosome is very simple. 
 
 ```{r}
-
 ggmanZoom(p1, chromosome = 1)
-
 ```
-
-Next, let's zoom in to the chromosome 1 region containing genes: GENE21, GENE22 and GENE23.
-
-```{r}
-ggmanZoom(p1, chromosome = 1, start.position = 14209481, end.position = 238131450)
-```
-
-Let's highlight the genes and add a legend. 
-
-```{r}
-ggmanZoom(p1, chromosome = 1, start.position = 14209481, end.position = 238131450, highlight.group = "gene")
-```
-
-
 
 ### Zoom in to a specific region of a chromosome
+To plot a specific region, the starting and the ending basepair positions have to be specified.
+Let's zoom in to the chromosome 1 region containing genes: GENE21, GENE22 and GENE23.
+
+```{r}
+ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695)
+```
 
 ### Highlight points in the zoomed region
 
-### Plot Odds ratio
+It's also possible to highlight using specific grouping variable. Here we have a column named `gene` in the main data frame `toy.gwas` that was used to construct the main layer `p1`. 
 
-### Plot beta
+```{r}
+ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695, highlight.group = "gene", legend.title = "Genes")
+```
 
 ### Create an inverted Manhattan plot
+
+An inverted Manhattan plot can be created by inverting the direction of p values of variants with negative beta values (or odds ratio < 1). 
+
+```{r}
+ggmanInvert(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", effect = "or", method = "or")
+```
+
+
+### Plot Odds ratio
+
+```{r}
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or", logTransform = FALSE, ymax = 3)
+```
+
+
+### Plot beta
+```{r}
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "beta", logTransform = FALSE, ymin = -2, ymax = 2)
+```
+
+
+

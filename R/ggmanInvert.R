@@ -25,8 +25,8 @@
 #'
 #' @export
 ggmanInvert <- function(gwas,
-                        snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", effect = "or",
-                        method = "or",
+                        snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
+                        effect = "or", method = "or",
                   sigLine = 8,
                   lineColor = "red",
                   pointSize = 0.1,

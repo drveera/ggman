@@ -42,8 +42,6 @@ ggmanZoom <- function(
     if(! is.na(highlight.group)){
         dfm.sub$group = dfm.sub[,highlight.group]
     }
-
-    print(head(dfm.sub))
     
     xtick1 <- min(dfm.sub$index)
     xtick1.label <- min(dfm.sub$bp)
