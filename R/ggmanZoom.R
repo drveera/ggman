@@ -2,14 +2,14 @@
 #'
 #' Zoom in to a specific region of the Manhattan Plot
 #'
-#' @param ggmanPlot A ggplot object of class ggplot
+#' @param ggmanPlot A ggplot object of class 'ggplot'
 #' @param chromosome Chromosome identifier
 #' @param start.position Starting basepair position
 #' @param end.position Ending basepair position
 #' @param xlabel X axis label
 #' @param ylabel Y axis label
 #' @param title Plot title
-#' @param ... other arguments to pass to geom_point()
+#' @param ... other arguments to pass to \code{\link{geom_point}}
 #'
 #' @examples
 #' 
@@ -19,14 +19,18 @@ ggmanZoom <- function(
                       ggmanPlot,
                       chromosome,
                       start.position,
-                      end.posiiton,
+                      end.position,
                       xlabel = NA,
                       ylabel = NA,
                       title = NA,
                       ...
                       ){
+    ##check inputs
+    environment(check.input.ggmanZoom) <- environment()
+    check.input.ggmanZoom()
+    
     dfm <- ggmanPlot[[1]]
-    dfm.sub <- dfm[dfm$bp >= start.position & dfm$bp <= end.posiiton & dfm$chrom == chromosome,]
+    dfm.sub <- dfm[dfm$bp >= start.position & dfm$bp <= end.position & dfm$chrom == chromosome,]
     xtick1 <- min(dfm.sub$index)
     xtick1.label <- min(dfm.sub$bp)
     xtick3 <- max(dfm.sub$index)
@@ -37,7 +41,7 @@ ggmanZoom <- function(
     xlabels <- c(xtick1.label,xtick2.label,xtick3.label)
     title <- "Regional association plot"
     if(is.na(xlabel)){
-        xlabel = paste0("Chromosome",chromosome,":",start.position,"-",end.posiiton)
+        xlabel = paste0("Chromosome",chromosome,":",start.position,"-",end.position)
     }
 
     if(is.na(ylabel)){

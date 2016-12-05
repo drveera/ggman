@@ -5,27 +5,29 @@
 \title{Add labels to ggman Plot}
 \usage{
 ggmanLabel(ggmanPlot, labelDfm, snp = "snp", label = "label",
-  type = "label", colour = "black", size = 2)
+  type = "label", ...)
 }
 \arguments{
-\item{ggmanPlot}{A ggman plot object}
+\item{ggmanPlot}{A ggplot layer of class 'ggplot'; see \code{\link{ggman}}}
 
-\item{labelDfm}{A data frame containing the snps and the labels}
+\item{labelDfm}{A data frame containing the SNPs and the labels;}
 
 \item{snp}{Name of the column containing the markers;}
 
-\item{label}{Name of the column containing the labels}
+\item{label}{Name of the column containing the labels; It can be the snp column itself.}
 
-\item{type}{type of label; either "label" or "text"}
+\item{type}{type of label; either "label" or "text"; see details section}
 
-\item{colour}{Colour of the label}
-
-\item{size}{of the label}
+\item{...}{other arguments applicable to \code{\link[ggrepel]{geom_text_repel}} or \code{\link[ggrepel]{geom_label_repel}}}
 }
 \description{
-Adds user provided labels to the ggman Manhattan plot
+Label a subset of points in the ggman plot.
+}
+\details{
+This function adds a layer of textual annotation using \code{\link[ggrepel]{geom_label_repel }}(if type = "label") or \code{\link[ggrepel]{geom_text_repel}} (if type = "text")
 }
 \examples{
+
 
 }
 

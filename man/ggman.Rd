@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggman.R
 \name{ggman}
 \alias{ggman}
-\title{A ggPlot wrapper for Manhattan Plot}
+\title{Creates a Manhattan Plot.}
 \usage{
 ggman(gwas, clumps = NA, snp = "snp", bp = "bp", chrom = "chrom",
   pvalue = "pvalue", sigLine = 8, lineColor = "red", pointSize = 0.1,
@@ -11,43 +11,63 @@ ggman(gwas, clumps = NA, snp = "snp", bp = "bp", chrom = "chrom",
   title = "Manhattan Plot")
 }
 \arguments{
-\item{gwas}{A data frame object with the gwas results}
+\item{gwas}{A data frame with the gwas results}
 
-\item{clumps}{A clump object, if clumping is required}
+\item{clumps}{Optional parameter; An object of class 'ggclumps' containing
+the SNP clumps, see \code{\link{ggclumps}}}
 
-\item{snp}{Name of the column containing the markers to plot}
+\item{snp}{Name of the column containing SNP identifiers; default is 'snp'}
 
-\item{bp}{Name of the column containing the basepair positions}
+\item{bp}{Name of the column containing the basepair positions; default is 'bp'}
 
-\item{chrom}{Name of the column containing the chromosome information}
+\item{chrom}{Name of the column containing the chromosome identifers; default is 'chrom'}
 
-\item{pvalue}{Name of the column containing the p values to plot}
+\item{pvalue}{Name of the column containing the p values; default is 'pvalue'}
 
-\item{sigLine}{Threshold for the genome wide significant line in -log10 scale}
+\item{sigLine}{Threshold for the genome wide significant line in -log10 scale; default is 8}
 
-\item{lineColor}{colour of the genomewide line}
+\item{lineColor}{colour of the genomewide line; default is red}
 
 \item{pointSize}{Size of the points in the plot supplied to geom_point}
 
-\item{ymin}{Starting point of y axis}
+\item{ymin}{Starting point of y axis; default is 0}
 
 \item{ymax}{Ending point of y axis}
 
-\item{logTransform}{Whether to log transform the p values}
+\item{logTransform}{if TRUE, P value is log10 transformed; default is TRUE; Specify FALSE
+when plotting values other p values, such as zscore or beta}
 
-\item{xlabel}{x axis label}
+\item{relative.positions}{if TRUE, the gaps between the SNPs will be reflected in the X-axis points}
 
-\item{ylabel}{y  axis label}
+\item{xlabel}{X-axis label}
+
+\item{ylabel}{Y-axis label}
 
 \item{title}{plot title}
-}
-\value{
-If unassigned to a variable, returns a manhattan plot; If assigned to a variable, stored as a ggplot layer
+
+\item{...}{other arguments to pass to \code{\link[ggplot2]{geom_point}};
+Note: do not use \emph{size} to specify size of the points, instead use \emph{pointSize}}
 }
 \description{
-Creates a ggPlot layer for Manhattan Plot
+Creates a Manhattan Plot as a ggplot layer.
+}
+\details{
+The function creates a manhattan plot as a ggplot layer. The output can be stored in a variable,
+and additional layers can be added. See \code{\link{ggmanHighlight}}, \code{\link{ggmanZoom}} and
+ \code{\link{ggmanLabel}}.
 }
 \examples{
+
+#basic plot
+ggman(gwas,snp = "SNP", bp ="BP", chrom = "CHR", pvalue = "P")
+
+
+\dontrun {
+#with relative positions
+ggman(gwas,snp = "SNP", bp ="BP", chrom = "CHR", pvalue = "P", relative.positions = TRUE)
+#with clumps
+ggman(gwas,snp = "SNP", bp ="BP", chrom = "CHR", pvalue = "P", clumps = gwasclumps)
+}
 
 }
 

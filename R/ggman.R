@@ -1,28 +1,49 @@
-#' A ggPlot wrapper for Manhattan Plot
+#' Creates a Manhattan Plot.
 #'
-#' Creates a ggPlot layer for Manhattan Plot
+#' Creates a Manhattan Plot as a ggplot layer.
 #'
-#' @param gwas A data frame object with the gwas results
-#' @param clumps A clump object, if clumping is required
-#' @param snp Name of the column containing the markers to plot
-#' @param bp Name of the column containing the basepair positions
-#' @param chrom Name of the column containing the chromosome information
-#' @param pvalue Name of the column containing the p values to plot
-#' @param sigLine Threshold for the genome wide significant line in -log10 scale
-#' @param lineColor colour of the genomewide line
+#' The function creates a manhattan plot as a ggplot layer. The output can be stored in a variable,
+#' and additional layers can be added. See \code{\link{ggmanHighlight}}, \code{\link{ggmanZoom}} and
+#'  \code{\link{ggmanLabel}}.
+#' 
+#' @param gwas A data frame with the gwas results
+#' @param clumps Optional parameter; An object of class 'ggclumps' containing
+#' the SNP clumps, see \code{\link{ggclumps}}
+#' @param snp Name of the column containing SNP identifiers; default is 'snp'
+#' @param bp Name of the column containing the basepair positions; default is 'bp'
+#' @param chrom Name of the column containing the chromosome identifers; default is 'chrom'
+#' @param pvalue Name of the column containing the p values; default is 'pvalue'
+#' @param sigLine Threshold for the genome wide significant line in -log10 scale; default is 8
+#' @param lineColor colour of the genomewide line; default is red
 #' @param pointSize Size of the points in the plot supplied to geom_point
-#' @param ymin Starting point of y axis
+#' @param ymin Starting point of y axis; default is 0
 #' @param ymax Ending point of y axis
-#' @param logTransform Whether to log transform the p values
-#' @param xlabel x axis label
-#' @param ylabel y  axis label
+#' @param logTransform if TRUE, P value is log10 transformed; default is TRUE; Specify FALSE
+#' when plotting values other p values, such as zscore or beta
+#' @param relative.positions if TRUE, the gaps between the SNPs will be reflected in the X-axis points
+#' @param xlabel X-axis label
+#' @param ylabel Y-axis label
 #' @param title plot title
+#' @param ... other arguments to pass to \code{\link[ggplot2]{geom_point}};
+#' Note: do not use \emph{size} to specify size of the points, instead use \emph{pointSize}
 #'
+#' @import ggplot2
+#' 
 #' @importFrom gtools mixedorder
 #' 
-#' @return If unassigned to a variable, returns a manhattan plot; If assigned to a variable, stored as a ggplot layer
-#'
+#' 
 #' @examples
+#'
+#' #basic plot
+#' ggman(gwas,snp = "SNP", bp ="BP", chrom = "CHR", pvalue = "P")
+#'
+#' 
+#' \dontrun {
+#' #with relative positions
+#' ggman(gwas,snp = "SNP", bp ="BP", chrom = "CHR", pvalue = "P", relative.positions = TRUE)
+#' #with clumps
+#' ggman(gwas,snp = "SNP", bp ="BP", chrom = "CHR", pvalue = "P", clumps = gwasclumps)
+#' }
 #'
 #' @export
 ggman <- function(gwas,
@@ -35,8 +56,11 @@ ggman <- function(gwas,
                   logTransform = TRUE,
                   relative.positions = FALSE,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot") {
-    library(ggplot2)
-    library(ggrepel)
+
+    ###check the inputs
+    environment(check.input.ggman) <- environment()
+    check.input.ggman()
+
     gwas <- as.data.frame(gwas)
     chrom <- gwas[,chrom]
     bp <- as.numeric(as.character(gwas[,bp]))
@@ -46,7 +70,6 @@ ggman <- function(gwas,
     dfm$chrom <- as.character(dfm$chrom)
 
     ##add index
-    #library(gtools)
     dfm <- dfm[order(dfm$bp),]
     dfm <- dfm[mixedorder(dfm$chrom),]
     dfm$index <- 1:nrow(dfm)
@@ -70,7 +93,7 @@ ggman <- function(gwas,
         ymax <- max(-log10(dfm$pvalue)) + 1
     }
 
-    if(relative.positions == TRUE){
+    if(relative.positions){
         relpos <- function(x,minbp,maxbp,nrows,startingpoint){
             actual.distance <- (x - minbp)
             relative.distance <- (actual.distance*nrows)/maxbp
@@ -94,11 +117,12 @@ ggman <- function(gwas,
     ##create x axis tick points
     dfmsplit <- split(dfm, dfm$chrom)
     xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
+
+
     
     if (!is.na(clumps)[1]){
         if (!any(class(clumps) == "ggclumps")) {
-            cat("clumps argument takes an object of class ggclumps;see ggClumps function")
-            return(NULL)
+            stop("clumps argument takes an object of class ggclumps;see ggClumps function")
         }
         clumpedSnps <- unlist(clumps)
         indexSnps <- names(clumps)
@@ -133,11 +157,14 @@ ggman <- function(gwas,
             geom_point(data = index.dfm, size = pointSize+1, colour = "blue", shape = 5) +
             labs(x = xlabel, y = ylabel, title = title)
     } else {
-        ggplot(dfm, aes(index,marker, colour = as.factor(chrom_alt))) +
+        ggplot(dfm, aes(x = index,y = marker, colour = as.factor(chrom_alt))) +
                 geom_point(size=pointSize) +
-                scale_x_continuous(breaks = xbreaks, labels = names(xbreaks), expand = c(0,0)) +
-                geom_hline(aes(yintercept= as.numeric(sigLine)),colour = "red", size = 0.25) +
-                scale_y_continuous(expand = c(0,0), limits = c(ymin,ymax))+
-            guides(colour = FALSE) + labs(x = xlabel, y = ylabel, title = title)
+            scale_x_continuous(breaks = xbreaks, labels = names(xbreaks),
+                               expand = c(0,0)) +
+            geom_hline(aes(yintercept= as.numeric(sigLine)),
+                       colour = "red", size = 0.25) +
+            scale_y_continuous(expand = c(0,0), limits = c(ymin,ymax))+
+            guides(colour = FALSE) +
+             labs(x = xlabel, y = ylabel, title = title) 
     }
 }

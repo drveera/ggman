@@ -2,24 +2,24 @@
 % Please edit documentation in R/ggmanHighlight.R
 \name{ggmanHighlight}
 \alias{ggmanHighlight}
-\title{Highlight markers in Manhattan plot}
+\title{Highlight points in Manhattan plot}
 \usage{
-ggmanHighlight(ggmanPlot, highlight, colour = "red", pointSize = 0.1)
+ggmanHighlight(ggmanPlot, highlight, colour = "red", size = 0.1, ...)
 }
 \arguments{
 \item{ggmanPlot}{A ggman plot}
 
 \item{highlight}{A character vector of SNP ids to highlight}
 
-\item{colour}{Colour of the highlight}
+\item{colour}{highlight colour}
 
-\item{pointSize}{Size of the highlight points}
+\item{...}{other arguments passed to \code{\link[ggplot2]{geom_pont}}}
 }
 \value{
 A manhattan plot with highlighted markers
 }
 \description{
-Highlights a specific subset of markers in the ggman plot
+Highlights a specific subset of points in the ggman plot
 }
 \examples{
 

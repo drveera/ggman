@@ -1,35 +1,47 @@
 #' Add labels to ggman Plot
 #'
-#' Adds user provided labels to the ggman Manhattan plot
+#' Label a subset of points in the ggman plot.
 #'
-#' @param ggmanPlot A ggman plot object
-#' @param labelDfm A data frame containing the snps and the labels
+#' 
+#' 
+#'
+#' This function adds a layer of textual annotation using \code{\link[ggrepel]{geom_label_repel }}(if type = "label") or \code{\link[ggrepel]{geom_text_repel}} (if type = "text")
+#'
+#' @param ggmanPlot A ggplot layer of class 'ggplot'; see \code{\link{ggman}}
+#' @param labelDfm A data frame containing the SNPs and the labels;  
 #' @param snp Name of the column containing the markers;
-#' @param label Name of the column containing the labels
-#' @param type type of label; either "label" or "text"
-#' @param colour Colour of the label
-#' @param size of the label
+#' @param label Name of the column containing the labels; It can be the snp column itself.
+#' @param type type of label; either "label" or "text"; see details section
+#' @param ... other arguments applicable to \code{\link[ggrepel]{geom_text_repel}} or \code{\link[ggrepel]{geom_label_repel}}
 #'
-#' @example
+#'@import ggplot2
+#' 
+#'@import ggrepel
+#' 
+#' @examples
+#' 
 #'
 #' @export
 ggmanLabel <- function(ggmanPlot,labelDfm,
                       snp = "snp",
                       label = "label",
-                      type = "label",
-                      colour  = "black",
-                      size = 2) {
+                      type = "label", ...) {
+
+    ##input checks
+    environment(check.input.ggmanLabel) = environment()
+    check.input.ggmanLabel()
+    
     dfm <- ggmanPlot[[1]]
     labelDfm$snp <- labelDfm[,snp]
     labelDfm$label <- labelDfm[,label]
     dfm.sub <- merge(dfm,labelDfm, by = "snp")
     if (type == "label"){
         ggmanPlot +
-            geom_label_repel(data = dfm.sub, aes(label = label), colour = colour, size = size) +
+            geom_label_repel(data = dfm.sub, aes(label = label),...) +
             geom_point(data = dfm.sub,shape = 5)
     } else if (type == "text"){
         ggmanPlot +
-            geom_text_repel(data = dfm.sub, aes(label = label), colour = colour, size = size) +
+            geom_text_repel(data = dfm.sub, aes(label = label), ...) +
             geom_point(data = dfm.sub,shape = 5)
     }
     

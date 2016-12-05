@@ -4,15 +4,17 @@
 \alias{ggmanZoom}
 \title{ggmanZoom}
 \usage{
-ggmanZoom(ggmanPlot, chromosome, start.position, end.posiiton, xlabel = NA,
+ggmanZoom(ggmanPlot, chromosome, start.position, end.position, xlabel = NA,
   ylabel = NA, title = NA, ...)
 }
 \arguments{
-\item{ggmanPlot}{A ggplot object of class ggplot}
+\item{ggmanPlot}{A ggplot object of class 'ggplot'}
 
 \item{chromosome}{Chromosome identifier}
 
 \item{start.position}{Starting basepair position}
+
+\item{end.position}{Ending basepair position}
 
 \item{xlabel}{X axis label}
 
@@ -20,9 +22,7 @@ ggmanZoom(ggmanPlot, chromosome, start.position, end.posiiton, xlabel = NA,
 
 \item{title}{Plot title}
 
-\item{...}{other arguments to pass to geom_point()}
-
-\item{end.position}{Ending basepair position}
+\item{...}{other arguments to pass to \code{\link{geom_point}}}
 }
 \description{
 Zoom in to a specific region of the Manhattan Plot
