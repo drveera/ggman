@@ -8,7 +8,8 @@ ggman(gwas, clumps = NA, snp = "snp", bp = "bp", chrom = "chrom",
   pvalue = "pvalue", sigLine = 8, lineColor = "red", pointSize = 0.1,
   ymin = 0, ymax = NA, logTransform = TRUE, relative.positions = FALSE,
   xlabel = "chromosome", ylabel = "-log10(P value)",
-  title = "Manhattan Plot")
+  title = "Manhattan Plot", legend.title = "legend",
+  clumps.label.type = "label")
 }
 \arguments{
 \item{gwas}{A data frame with the gwas results}

@@ -55,7 +55,8 @@ ggman <- function(gwas,
                   ymin = 0, ymax = NA,
                   logTransform = TRUE,
                   relative.positions = FALSE,
-                  xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot") {
+                  xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot",
+                  legend.title = "legend", clumps.label.type = 'label') {
 
     ###check the inputs
     environment(check.input.ggman) <- environment()
@@ -119,43 +120,13 @@ ggman <- function(gwas,
     xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
 
 
-    
+    dfm <- dfm
     if (!is.na(clumps)[1]){
-        if (!any(class(clumps) == "ggclumps")) {
-            stop("clumps argument takes an object of class ggclumps;see ggClumps function")
+        if (!any(class(clumps) == "ggmanClumps")) {
+            stop("clumps argument takes an object of class ggmanclumps;see ggmanClumps function")
         }
-        clumpedSnps <- unlist(clumps)
-        indexSnps <- names(clumps)
-
-        ##index snps subset
-        index.dfm <- dfm[dfm$snp %in% indexSnps,]
-        
-        clumpedSnps <- c(clumpedSnps, indexSnps )
-        index <- dfm$index
-        names(index) <- dfm$snp
-
-        pb <- txtProgressBar(min = 0, max = length(indexSnps), style = 3)
-        j = 0
-        for (i in indexSnps){
-            index <- replace(index, names(index) %in% clumps[[which(names(clumps) == i)]], index[i])
-            j = j + 1
-            setTxtProgressBar(pb, j)
-        }
-        close(pb)
-        dfm$index <- index
-        dfm.sub <- dfm[dfm$snp %in% clumpedSnps,]
-        dfm.index <- dfm[dfm$snp %in% indexSnps,]
-        
-        ggplot(dfm, aes(index,marker, colour = as.factor(chrom_alt))) +
-            geom_point(size=pointSize) +
-            scale_x_continuous(breaks = xbreaks, labels = names(xbreaks), expand = c(0,0)) +
-            geom_hline(aes(yintercept= as.numeric(sigLine)),colour = "red", size = 0.25) +
-            scale_y_continuous(expand = c(0,0), limits = c(ymin,ymax))  +
-            guides(colour = FALSE) +
-            scale_colour_grey(start = 0.4,end=0.6) +
-            geom_point(data = dfm.sub, size=pointSize, colour = "blue") +
-            geom_point(data = index.dfm, size = pointSize+1, colour = "blue", shape = 5) +
-            labs(x = xlabel, y = ylabel, title = title)
+        environment(plot.clumps) <- environment()
+        plot.clumps()        
     } else {
         ggplot(dfm, aes(x = index,y = marker, colour = as.factor(chrom_alt))) +
                 geom_point(size=pointSize) +

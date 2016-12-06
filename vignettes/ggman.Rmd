@@ -124,19 +124,34 @@ gwas.clump <- read.table("plink.clumped", header = TRUE)
 ```
 Here, the example file `toy.clumped` is a data.frame, which is created by reading the plink.clumped file and subsetting only the columns 'SNP' and 'SP2'. 
 
-3. Convert the `toy.clumped` data.frame to a `ggclumps` object using the `ggmanClumps` function. The column names with the index SNPs (`SNP`) and clumps (`SP2`) have to be specified. 
+3. Convert the `toy.clumped` data.frame to a `ggclumps` object using the `ggmanClumps` function. The arguments `index.snp.column` and `clumps.column` are mandatory. The name of the column containing index SNPs ('SNP') should be passed to argument `index.snp.column` and the name of the column containing the clumps should be passed to argument `clumps.column`.  
 
 ```{r}
-toy.clumps <- ggmanClumps(toy.clumped, index.snp = "SNP", clumps = "SP2") 
+toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2") 
 ```
 
-4. Pass the toy.clumped object to `clumps=` argument of `ggman` function. (Note: This step might take a while when large number of clumps are processed. A progress bar will be shown)
+4. Pass the toy.clumped object to `clumps=` argument of `ggman` function.
 
 ```{r}
 ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
 ```
 
 
+### highlight and label the clumps
+
+The clumps can be grouped using a grouping variable and the index SNPs can be labelled with user prefered labels. All you need to do is to add additional columns in the plink.clumped file and specify them in the `ggmanClumps` function. Here in the example `toy.clumped` file, there are 2 extra columns with names 'group' and 'label'. 
+
+```{r}
+toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2", group.column = "group", label.column = "label") 
+ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
+
+```
+
+Use `legend.title` to change the legend title. If you prefer plain text without box for labels, use `clumps.label.type = 'text`
+
+```{r}
+ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5, legend.title = "Groups", clumps.label.type = 'text')
+```
 
 
 
