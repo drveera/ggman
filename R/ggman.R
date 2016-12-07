@@ -7,27 +7,31 @@
 #'  \code{\link{ggmanLabel}}.
 #' 
 #' @param gwas A data frame with the gwas results
-#' @param clumps Optional parameter; An object of class 'ggclumps' containing
-#' the SNP clumps, see \code{\link{ggclumps}}
+#' @param clumps Optional argument; takes an object of class 'ggclumps' containing
+#' the SNP clumps, see \code{\link{ggmanClumps}}
 #' @param snp Name of the column containing SNP identifiers; default is 'snp'
 #' @param bp Name of the column containing the basepair positions; default is 'bp'
 #' @param chrom Name of the column containing the chromosome identifers; default is 'chrom'
 #' @param pvalue Name of the column containing the p values; default is 'pvalue'
-#' @param sigLine Threshold for the genome wide significant line in -log10 scale; default is 8
-#' @param lineColor colour of the genomewide line; default is red
-#' @param pointSize Size of the points in the plot supplied to geom_point
+#' @param sigLine Threshold for the genome wide significant line in -log10 scale; default is 8; specify NA to remove the line.
+#' @param lineColour colour of the genomewide line; default is 'red'
+#' @param pointSize Size of the points in the plot; default is 0.1
 #' @param ymin Starting point of y axis; default is 0
 #' @param ymax Ending point of y axis
-#' @param logTransform if TRUE, P value is log10 transformed; default is TRUE; Specify FALSE
+#' @param logTransform if TRUE, P value is -log10 transformed; default is TRUE; Specify FALSE
 #' when plotting values other p values, such as zscore or beta
-#' @param relative.positions if TRUE, the gaps between the SNPs will be reflected in the X-axis points
+#' @param relative.positions if TRUE, the x axis points will be calculated in proportion to the basepair positions. So, the gaps in the genome with no genotypes will be reflected in the plot(requires more computation, hence more time to plot). If FALSE, the SNPs are ascendingly sorted chromosome-wise. The default value is FALSE. 
 #' @param xlabel X-axis label
 #' @param ylabel Y-axis label
 #' @param title plot title
+#' @param legend.title title of legend; this argument applies only when the clumps are plotted and highlighted in groups.
+#' @param clumps.label.type type of label; either 'text' or 'label'; default is 'label'
+#' @param legend.remove if TRUE, the  legend will be removed; default is FALSE
 #' @param ... other arguments to pass to \code{\link[ggplot2]{geom_point}};
 #' Note: do not use \emph{size} to specify size of the points, instead use \emph{pointSize}
 #'
 #' @import ggplot2
+#' @import ggrepel
 #' 
 #' @importFrom gtools mixedorder
 #' 
@@ -50,13 +54,13 @@ ggman <- function(gwas,
                   clumps = NA,
                   snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
                   sigLine = 8,
-                  lineColor = "red",
+                  lineColour = "red",
                   pointSize = 0.1,
                   ymin = 0, ymax = NA,
                   logTransform = TRUE,
                   relative.positions = FALSE,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot",
-                  legend.title = "legend", clumps.label.type = 'label') {
+                  legend.title = "legend", clumps.label.type = 'label', legend.remove = FALSE, ...) {
 
     ###check the inputs
     environment(check.input.ggman) <- environment()
@@ -128,14 +132,19 @@ ggman <- function(gwas,
         environment(plot.clumps) <- environment()
         plot.clumps()        
     } else {
-        ggplot(dfm, aes(x = index,y = marker, colour = as.factor(chrom_alt))) +
+        p1 <- ggplot(dfm, aes(x = index,y = marker, colour = as.factor(chrom_alt))) +
                 geom_point(size=pointSize) +
             scale_x_continuous(breaks = xbreaks, labels = names(xbreaks),
                                expand = c(0,0)) +
-            geom_hline(aes(yintercept= as.numeric(sigLine)),
-                       colour = "red", size = 0.25) +
             scale_y_continuous(expand = c(0,0), limits = c(ymin,ymax))+
             guides(colour = FALSE) +
-             labs(x = xlabel, y = ylabel, title = title) 
+            labs(x = xlabel, y = ylabel, title = title)
+
+    if(!is.na(sigLine)){
+        p1 + geom_hline(aes(yintercept= as.numeric(sigLine)),
+                        colour = lineColour, size = 0.25) 
+            }
+        return(p1)
     }
+    
 }

@@ -1,6 +1,6 @@
 #' Highlight points in Manhattan plot
 #'
-#' Highlights a specific subset of points in the ggman plot
+#' Highlights a specific subset of points in the Manhattan plot
 #'
 #' @param ggmanPlot A ggman plot
 #' @param highlight A character vector of SNP ids to highlight

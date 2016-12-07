@@ -80,14 +80,15 @@ plot.clumps <- function(){
     
     if(!is.na(clumps$clump.labels)[1]){
         if(clumps.label.type == 'label'){
-            p1 + geom_label_repel(data = index.dfm, aes(x = index, y = marker,label = clump.labels),colour = "black")
+            p1 <- p1 + geom_label_repel(data = index.dfm, aes(x = index, y = marker,label = clump.labels),colour = "black")
         } else {
-            p1 + geom_text_repel(data = index.dfm, aes(x = index, y = marker,label = clump.labels),colour = "black")
+            p1 <- p1 + geom_text_repel(data = index.dfm, aes(x = index, y = marker,label = clump.labels),colour = "black")
         }
 
-    } else {
-        p1
     }
 
-
+    if(legend.remove){
+        p1 <- p1 + guides(fill = FALSE)
+    }
+return(p1)
 }

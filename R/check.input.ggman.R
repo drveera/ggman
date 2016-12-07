@@ -42,14 +42,16 @@ check.input.ggman <- function(){
     }
 
     ## sigline input
-    if(!is.numeric(sigLine)){
-        stop("The sigLine input is not numeric")
-    }
-    if(sign(sigLine) == -1){
-        stop("The sigLine argument cannot be negative")
+    if(!is.na(sigLine)){
+        if(!is.numeric(sigLine)){
+            stop("The sigLine input is not numeric")
+        }
+        if(sign(sigLine) == -1){
+            stop("The sigLine argument cannot be negative")
+        }
     }
 
-    ## lineColor input
+    ## lineColour input
     ## Thanks to Sacha Epskamp for isColor function. 
     ## Reference:http://stackoverflow.com/questions/13289009/check-if-character-string-is-a-valid-color-representation/13290832
     isColor <- function(x)
@@ -57,8 +59,8 @@ check.input.ggman <- function(){
         res <- try(col2rgb(x),silent=TRUE)
         return(!"try-error"%in%class(res))
     }
-    if(! isColor(lineColor)){
-        stop(paste0("\'",lineColor,"\'"," is not a valid color"))
+    if(! isColor(lineColour)){
+        stop(paste0("\'",lineColour,"\'"," is not a valid color"))
     }
 
     ## pointSize input
@@ -96,6 +98,30 @@ check.input.ggman <- function(){
     ## ylabel input
     if(!is.character(ylabel)){
         stop("The ylabel input is not character")
+    }
+
+    ## title
+    if(! is.character(title)){
+        stop("The title input is not character")
+    }
+
+    ##legend.title
+    if(! is.character(legend.title)){
+        stop("The legend title is not character")
+    }
+
+    ##clumps.label.type
+    if(! is.character(clumps.label.type)){
+        stop("The clumps.label.type is not character")
+    }
+
+    if(!any(clumps.label.type %in% c("label","text"))){
+        stop("Invalid clumps.label.type input; specify either label or text ")
+    }
+
+    ##legend.remove
+    if(! is.logical(legend.remove)){
+        stop("The legend remove input is not logical")
     }
     
 }

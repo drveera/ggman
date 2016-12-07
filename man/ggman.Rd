@@ -5,17 +5,17 @@
 \title{Creates a Manhattan Plot.}
 \usage{
 ggman(gwas, clumps = NA, snp = "snp", bp = "bp", chrom = "chrom",
-  pvalue = "pvalue", sigLine = 8, lineColor = "red", pointSize = 0.1,
+  pvalue = "pvalue", sigLine = 8, lineColour = "red", pointSize = 0.1,
   ymin = 0, ymax = NA, logTransform = TRUE, relative.positions = FALSE,
   xlabel = "chromosome", ylabel = "-log10(P value)",
   title = "Manhattan Plot", legend.title = "legend",
-  clumps.label.type = "label")
+  clumps.label.type = "label", legend.remove = FALSE, ...)
 }
 \arguments{
 \item{gwas}{A data frame with the gwas results}
 
-\item{clumps}{Optional parameter; An object of class 'ggclumps' containing
-the SNP clumps, see \code{\link{ggclumps}}}
+\item{clumps}{Optional argument; takes an object of class 'ggclumps' containing
+the SNP clumps, see \code{\link{ggmanClumps}}}
 
 \item{snp}{Name of the column containing SNP identifiers; default is 'snp'}
 
@@ -25,26 +25,32 @@ the SNP clumps, see \code{\link{ggclumps}}}
 
 \item{pvalue}{Name of the column containing the p values; default is 'pvalue'}
 
-\item{sigLine}{Threshold for the genome wide significant line in -log10 scale; default is 8}
+\item{sigLine}{Threshold for the genome wide significant line in -log10 scale; default is 8; specify NA to remove the line.}
 
-\item{lineColor}{colour of the genomewide line; default is red}
+\item{lineColour}{colour of the genomewide line; default is 'red'}
 
-\item{pointSize}{Size of the points in the plot supplied to geom_point}
+\item{pointSize}{Size of the points in the plot; default is 0.1}
 
 \item{ymin}{Starting point of y axis; default is 0}
 
 \item{ymax}{Ending point of y axis}
 
-\item{logTransform}{if TRUE, P value is log10 transformed; default is TRUE; Specify FALSE
+\item{logTransform}{if TRUE, P value is -log10 transformed; default is TRUE; Specify FALSE
 when plotting values other p values, such as zscore or beta}
 
-\item{relative.positions}{if TRUE, the gaps between the SNPs will be reflected in the X-axis points}
+\item{relative.positions}{if TRUE, the x axis points will be calculated in proportion to the basepair positions. So, the gaps in the genome with no genotypes will be reflected in the plot(requires more computation, hence more time to plot). If FALSE, the SNPs are ascendingly sorted chromosome-wise. The default value is FALSE.}
 
 \item{xlabel}{X-axis label}
 
 \item{ylabel}{Y-axis label}
 
 \item{title}{plot title}
+
+\item{legend.title}{title of legend; this argument applies only when the clumps are plotted and highlighted in groups.}
+
+\item{clumps.label.type}{type of label; either 'text' or 'label'; default is 'label'}
+
+\item{legend.remove}{if TRUE, the  legend will be removed; default is FALSE}
 
 \item{...}{other arguments to pass to \code{\link[ggplot2]{geom_point}};
 Note: do not use \emph{size} to specify size of the points, instead use \emph{pointSize}}
