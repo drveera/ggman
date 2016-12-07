@@ -3,7 +3,13 @@
 #' @keywords internal
 #'
 #' 
-check.input.ggmanLabel <- function(){
+check.input.ggmanLabel <- function(
+                                   ggmanPlot = ggmanPlot,
+                                   labelDfm = labelDfm,
+                                   snp = snp,
+                                   label = label,
+                                   type = type
+                                   ){
     ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman object")

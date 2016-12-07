@@ -5,7 +5,13 @@
 #' 
 ####checks###
 
-check.input.ggmanClumps <- function(){
+check.input.ggmanClumps <- function(
+                                    plink.clumped = plink.clumped,
+                                    index.snp.column = index.snp.column,
+                                    clumps.column = clumps.column,
+                                    label.column = label.column,
+                                    group.column = group.column
+                                    ){
     ##plink.clumped
     if(! any(class(plink.clumped) == 'data.frame')){
         stop("The plink.clumped input is not a data.frame")

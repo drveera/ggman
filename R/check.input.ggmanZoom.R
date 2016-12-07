@@ -1,4 +1,15 @@
-check.input.ggmanZoom <- function(){
+check.input.ggmanZoom <- function(
+                                  ggmanPlot = ggmanPlot,
+                                  chromosome = chromosome,
+                                  start.position = start.position,
+                                  end.position = end.position,
+                                  xlabel = xlabel,
+                                  ylabel = ylabel,
+                                  title = title,
+                                  highlight.group = highlight.group,
+                                  legend.title = legend.title,
+                                  legend.remove=legend.remove
+                                  ){
     ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman object")

@@ -4,7 +4,34 @@
 #'
 #' 
 
-plot.clumps <- function(){
+plot.clumps <- function(
+                        gwas = gwas,
+                              clumps = clumps,
+                              snp = snp,
+                              bp = bp,
+                              chrom = chrom,
+                              pvalue = pvalue,
+                              sigLine = sigLine,
+                              lineColour = lineColour,
+                              pointSize = pointSize,
+                              ymin=ymin,
+                              ymax=ymax,
+                              logTransform=logTransform,
+                              invert=invert,
+                              invert.method=invert.method,
+                              invert.var=invert.var,
+                              relative.positions = relative.positions,
+                              xlabel=xlabel,
+                              ylabel=ylabel,
+                              title=title,
+                              legend.title=legend.title,
+                              clumps.label.type=clumps.label.type,
+                        legend.remove=legend.remove,
+                        index = index,
+                        marker = marker,
+                        chrom_alt = chrom_alt,
+                        xbreaks = xbreaks                        
+                        ){
     ##map the index snps with their clumps and make a data frame
     clump.dfm.lst <- list()
     for(i in 1:length(clumps$clump.index)){
@@ -29,7 +56,7 @@ plot.clumps <- function(){
 
     ##create a seperate dfm for index snp
     indexSnps <- clumps$clump.index
-    index.dfm <<- dfm[dfm$snp %in% indexSnps,]
+    index.dfm <- dfm[dfm$snp %in% indexSnps,]
 
     ##get the grouping and label info from clump.dfm
     group.dfm <- clump.dfm[,c("snp","clump.groups","clump.labels")]
@@ -44,7 +71,7 @@ plot.clumps <- function(){
     ## get the positions
     positions.dfm <- dfm[,c("snp","index")]
     names(positions.dfm)[1] <- "index.snp" 
-    dfm.sub <<- merge(clump.dfm,positions.dfm,by = "index.snp",all.x=TRUE)
+    dfm.sub <- merge(clump.dfm,positions.dfm,by = "index.snp",all.x=TRUE)
     ##use dfm.sub to plot the clumps and dfm to plot all other points
     ##remove the clumped snps from main dfm
     dfm <- dfm[!dfm$snp %in% clump.dfm$snp,]

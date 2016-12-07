@@ -4,7 +4,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(highlights)
+#' @usage data(toy.highlights)
 #'
 #' @format A vector of snp IDs
 #' 

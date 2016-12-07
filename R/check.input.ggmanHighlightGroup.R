@@ -3,7 +3,14 @@
 #' @keywords internal
 #'
 #' 
-check.input.ggmanHighlightGroup <- function(){
+check.input.ggmanHighlightGroup <- function(
+                                            ggmanPlot = ggmanPlot,
+                                            highlightDfm = highlightDfm,
+                                            snp = snp,
+                                            group = group,
+                                            legend.title = legend.title,
+                                            legend.remove = length.remove
+                                            ){
         ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman layer")

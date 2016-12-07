@@ -15,6 +15,10 @@
 #'
 #' @examples
 #'
+#' ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group",
+#'                     size = 0.5, legend.title = "Significant groups")
+#' 
+#'
 #' @export
 ggmanHighlightGroup <- function(ggmanPlot,
                            highlightDfm,

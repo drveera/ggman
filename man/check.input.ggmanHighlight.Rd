@@ -4,7 +4,8 @@
 \alias{check.input.ggmanHighlight}
 \title{This function checks the input arguments to the function ggmanHighlight}
 \usage{
-check.input.ggmanHighlight()
+check.input.ggmanHighlight(ggmanPlot = ggmanPlot, highlight = highlight,
+  colour = colour)
 }
 \description{
 This function checks the input arguments to the function ggmanHighlight

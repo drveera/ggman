@@ -9,11 +9,26 @@ ggmanClumps(plink.clumped, index.snp.column, clumps.column, label.column = NA,
 }
 \arguments{
 \item{plink.clumped}{A data frame read from plink.clumped file.}
+
+\item{index.snp.column}{Name of the column containing the index SNPs}
+
+\item{clumps.column}{Name of the column containing the clumps}
+
+\item{label.column}{Name of the column containing the labels}
+
+\item{group.column}{Name of the column containing the grouping variable}
 }
 \description{
 Process the clumped file from plink
 }
 \examples{
+
+no label and no highlights
+toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2")
+
+add labels and highlights
+toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2",
+                          group.column = "group", label.column = "label")
 
 }
 

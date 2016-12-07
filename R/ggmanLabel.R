@@ -19,6 +19,16 @@
 #'@import ggrepel
 #' 
 #' @examples
+#'
+#' #label type annotations
+#' ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp")
+#' 
+#'
+#' #text type annotations
+#' ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp", type = "text")
+#'
+#' #change the colour and size of labels
+#' ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp", colour = "black", size = 2)
 #' 
 #'
 #' @export

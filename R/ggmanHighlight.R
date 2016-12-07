@@ -12,9 +12,10 @@
 #'
 #' @examples
 #'
+#' ggmanHighlight(p1, highlight = toy.highlights)
+#'
 #' @export
-ggmanHighlight <- function(ggmanPlot, highlight,colour = "red",
-                           size = 0.1, ...){
+ggmanHighlight <- function(ggmanPlot, highlight,colour = "red", ...){
     ##input checks
     environment(check.input.ggmanHighlight) <- environment()
     check.input.ggmanHighlight()
@@ -26,5 +27,5 @@ ggmanHighlight <- function(ggmanPlot, highlight,colour = "red",
     }
     ggmanPlot +
         scale_colour_grey(start = 0.5,end = 0.6) +
-        geom_point(data = dfm,colour= colour, size = size,...)
+        geom_point(data = dfm,colour= colour,...)
 }

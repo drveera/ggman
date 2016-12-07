@@ -3,9 +3,20 @@
 #' Process the clumped file from plink
 #'
 #' @param plink.clumped A data frame read from plink.clumped file.
+#' @param index.snp.column Name of the column containing the index SNPs
+#' @param clumps.column Name of the column containing the clumps
+#' @param label.column Name of the column containing the labels
+#' @param group.column Name of the column containing the grouping variable 
 #'
 #' @examples
 #'
+#' no label and no highlights
+#' toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2")
+#'
+#' add labels and highlights
+#' toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2",
+#'                           group.column = "group", label.column = "label")
+#' 
 #' @export
 ggmanClumps <- function(plink.clumped,
                         index.snp.column,

@@ -4,7 +4,9 @@
 \alias{check.input.ggmanClumps}
 \title{This function checks the user input for the function ggmanClumps.R}
 \usage{
-check.input.ggmanClumps()
+check.input.ggmanClumps(plink.clumped = plink.clumped,
+  index.snp.column = index.snp.column, clumps.column = clumps.column,
+  label.column = label.column, group.column = group.column)
 }
 \description{
 This function checks the user input for the function ggmanClumps.R

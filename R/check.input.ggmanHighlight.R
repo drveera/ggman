@@ -2,7 +2,11 @@
 #'
 #' @keywords internal
 #' 
-check.input.ggmanHighlight <- function(){
+check.input.ggmanHighlight <- function(
+                                       ggmanPlot = ggmanPlot,
+                                       highlight = highlight,
+                                       colour=colour
+                                       ){
     ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman object")

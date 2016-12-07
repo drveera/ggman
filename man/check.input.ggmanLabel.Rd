@@ -4,7 +4,8 @@
 \alias{check.input.ggmanLabel}
 \title{This function checks the user input for the function ggmanLabel.R}
 \usage{
-check.input.ggmanLabel()
+check.input.ggmanLabel(ggmanPlot = ggmanPlot, labelDfm = labelDfm,
+  snp = snp, label = label, type = type)
 }
 \description{
 This function checks the user input for the function ggmanLabel.R

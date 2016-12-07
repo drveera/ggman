@@ -5,7 +5,30 @@
 #' 
 ####checks###
 
-check.input.ggman <- function(){
+check.input.ggman <- function(
+                              gwas = gwas,
+                              clumps = clumps,
+                              snp = snp,
+                              bp = bp,
+                              chrom = chrom,
+                              pvalue = pvalue,
+                              sigLine = sigLine,
+                              lineColour = lineColour,
+                              pointSize = pointSize,
+                              ymin=ymin,
+                              ymax=ymax,
+                              logTransform=logTransform,
+                              invert=invert,
+                              invert.method=invert.method,
+                              invert.var=invert.var,
+                              relative.positions = relative.positions,
+                              xlabel=xlabel,
+                              ylabel=ylabel,
+                              title=title,
+                              legend.title=legend.title,
+                              clumps.label.type=clumps.label.type,
+                              legend.remove=legend.remove
+                              ){
     ## gwas input
     if(!any(class(gwas) == "data.frame")){
         stop("The gwas input is not a data frame")
@@ -92,23 +115,25 @@ check.input.ggman <- function(){
     if(! is.logical(invert)){
         stop("The invert input is not logical")
     }
-    
-    ## invert.method
-    if(! is.character(invert.method)){
-        stop("The invert.method input is not character")
-    }
 
-    if(! any(invert.method %in% c("or","beta"))){
-        stop("The invert.method argument can take values: 'or' or 'beta'")
-    }
+    if(invert){
+        ## invert.method
+        if(! is.character(invert.method)){
+            stop("The invert.method input is not character")
+        }
 
-    ##invert.var
-    if(! is.character(invert.var)){
-        stop("The invert.var input is not a character")
-    }
+        if(! any(invert.method %in% c("or","beta"))){
+            stop("The invert.method argument can take values: 'or' or 'beta'")
+        }
 
-    if(! invert.var %in% names(gwas)){
-        stop(paste0("The column ",invert.var, " is not present in gwas data.frame"))
+        ##invert.var
+        if(! is.character(invert.var)){
+            stop("The invert.var input is not a character")
+        }
+
+        if(! invert.var %in% names(gwas)){
+            stop(paste0("The column ",invert.var, " is not present in gwas data.frame"))
+        }
     }
     
     ## relative.positions input

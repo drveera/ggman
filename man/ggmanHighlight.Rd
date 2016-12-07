@@ -4,7 +4,7 @@
 \alias{ggmanHighlight}
 \title{Highlight points in Manhattan plot}
 \usage{
-ggmanHighlight(ggmanPlot, highlight, colour = "red", size = 0.1, ...)
+ggmanHighlight(ggmanPlot, highlight, colour = "red", ...)
 }
 \arguments{
 \item{ggmanPlot}{A ggman plot of class 'ggman'}
@@ -22,6 +22,8 @@ A manhattan plot with highlighted markers
 Highlights a specific subset of points in the Manhattan plot
 }
 \examples{
+
+ggmanHighlight(p1, highlight = toy.highlights)
 
 }
 

@@ -6,7 +6,7 @@
 \title{toy.highlights}
 \format{A vector of snp IDs}
 \usage{
-data(highlights)
+data(toy.highlights)
 }
 \description{
 A vector of markers to highlight

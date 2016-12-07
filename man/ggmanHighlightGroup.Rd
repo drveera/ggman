@@ -30,5 +30,9 @@ Highlights groups of points in the ggman Manhattan Plot and add a legend.
 }
 \examples{
 
+ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group",
+                    size = 0.5, legend.title = "Significant groups")
+
+
 }
 

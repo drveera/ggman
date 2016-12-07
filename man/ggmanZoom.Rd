@@ -36,6 +36,16 @@ Zoom in to a specific region of the Manhattan Plot
 }
 \examples{
 
+#specific chromosome
+ggmanZoom(p1, chromosome = 1)
+
+#specific region
+ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695)
+
+#add highlights and legend
+ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695,
+          highlight.group = "gene", legend.title = "Genes")
+
 
 }
 

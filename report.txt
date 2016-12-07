@@ -1,0 +1,197 @@
+* checking for file ‘/Users/veera/Research/myscripts/github/ggman/DESCRIPTION’ ... OK
+* preparing ‘ggman’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files
+* checking for empty or unneeded directories
+* looking to see if a ‘data/datalist’ file should be added
+* building ‘ggman_0.1.tar.gz’
+[1] "/Users/veera/Research/myscripts/github/ggman_0.1.tar.gz"
+Warning: package ‘ggplot2’ was built under R version 3.3.2
+Warning: package ‘ggrepel’ was built under R version 3.3.2
+* checking for file ‘/Users/veera/Research/myscripts/github/ggman/DESCRIPTION’ ... OK
+* preparing ‘ggman’:
+* checking DESCRIPTION meta-information ... OK
+* checking for LF line-endings in source and make files
+* checking for empty or unneeded directories
+* looking to see if a ‘data/datalist’ file should be added
+* building ‘ggman_0.1.tar.gz’
+* using log directory ‘/private/var/folders/sg/5qj4pzf53sx0hk7gxm70c26r0000gn/T/RtmplCQgXV/ggman.Rcheck’
+* using R version 3.3.0 (2016-05-03)
+* using platform: x86_64-apple-darwin13.4.0 (64-bit)
+* using session charset: UTF-8
+* using options ‘--no-manual --as-cran’
+* checking for file ‘ggman/DESCRIPTION’ ... OK
+* this is package ‘ggman’ version ‘0.1’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ggman’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: package ‘ggplot2’ was built under R version 3.3.2
+  Warning: package ‘ggrepel’ was built under R version 3.3.2
+See ‘/private/var/folders/sg/5qj4pzf53sx0hk7gxm70c26r0000gn/T/RtmplCQgXV/ggman.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘make.R’ ‘report.txt’
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+check.input.ggman : isColor: no visible global function definition for
+  ‘col2rgb’
+check.input.ggmanHighlight : isColor: no visible global function
+  definition for ‘col2rgb’
+check.input.ggmanHighlightGroup: no visible binding for global variable
+  ‘length.remove’
+ggman: no visible binding for global variable ‘index’
+ggman: no visible binding for global variable ‘marker’
+ggman: no visible binding for global variable ‘chrom_alt’
+ggmanZoom: no visible binding for global variable ‘index’
+ggmanZoom: no visible binding for global variable ‘marker’
+ggmanZoom: no visible binding for global variable ‘group’
+Undefined global functions or variables:
+  chrom_alt col2rgb group index length.remove marker
+Consider adding
+  importFrom("grDevices", "col2rgb")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'ggmanLabel.Rd':
+  ‘[ggrepel]{geom_label_repel }’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+Warning: parse error in file 'ggman-Ex.R':
+62:4: unexpected symbol
+61: 
+62: no label
+       ^
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... WARNING
+  
+  Note: significantly better compression could be obtained
+        by using R CMD build --resave-data
+                             old_size new_size compress
+  toy.gwas.RData                327Kb    226Kb       xz
+  toy.highlights.group.RData     14Kb     12Kb       xz
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ggman-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ggman
+> ### Title: Creates a Manhattan Plot.
+> ### Aliases: ggman
+> 
+> ### ** Examples
+> 
+> 
+> #simple Manhattan Plot
+> ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
+Error in check.input.ggman() : 
+  promise already under evaluation: recursive default argument reference or earlier problems?
+Calls: ggman -> check.input.ggman
+Execution halted
+* DONE
+Status: 1 ERROR, 4 WARNINGs, 3 NOTEs
+checking examples ... ERROR
+Running examples in ‘ggman-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ggman
+> ### Title: Creates a Manhattan Plot.
+> ### Aliases: ggman
+> 
+> ### ** Examples
+> 
+> 
+> #simple Manhattan Plot
+> ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
+Error in check.input.ggman() : 
+  promise already under evaluation: recursive default argument reference or earlier problems?
+Calls: ggman -> check.input.ggman
+Execution halted
+
+checking whether package ‘ggman’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: package ‘ggplot2’ was built under R version 3.3.2
+  Warning: package ‘ggrepel’ was built under R version 3.3.2
+See ‘/private/var/folders/sg/5qj4pzf53sx0hk7gxm70c26r0000gn/T/RtmplCQgXV/ggman.Rcheck/00install.out’ for details.
+
+checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'ggmanLabel.Rd':
+  ‘[ggrepel]{geom_label_repel }’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+
+
+checking for unstated dependencies in examples ... WARNING
+Warning: parse error in file 'ggman-Ex.R':
+62:4: unexpected symbol
+61: 
+62: no label
+       ^
+
+checking data for ASCII and uncompressed saves ... WARNING
+  
+  Note: significantly better compression could be obtained
+        by using R CMD build --resave-data
+                             old_size new_size compress
+  toy.gwas.RData                327Kb    226Kb       xz
+  toy.highlights.group.RData     14Kb     12Kb       xz
+
+checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+
+checking top-level files ... NOTE
+Non-standard files/directories found at top level:
+  ‘make.R’ ‘report.txt’
+
+checking R code for possible problems ... NOTE
+check.input.ggman : isColor: no visible global function definition for
+  ‘col2rgb’
+check.input.ggmanHighlight : isColor: no visible global function
+  definition for ‘col2rgb’
+check.input.ggmanHighlightGroup: no visible binding for global variable
+  ‘length.remove’
+ggman: no visible binding for global variable ‘index’
+ggman: no visible binding for global variable ‘marker’
+ggman: no visible binding for global variable ‘chrom_alt’
+ggmanZoom: no visible binding for global variable ‘index’
+ggmanZoom: no visible binding for global variable ‘marker’
+ggmanZoom: no visible binding for global variable ‘group’
+Undefined global functions or variables:
+  chrom_alt col2rgb group index length.remove marker
+Consider adding
+  importFrom("grDevices", "col2rgb")
+to your NAMESPACE file.
