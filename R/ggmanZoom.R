@@ -2,13 +2,16 @@
 #'
 #' Zoom in to a specific region of the Manhattan Plot
 #'
-#' @param ggmanPlot A ggplot object of class 'ggplot'
+#' @param ggmanPlot A ggplot object of class 'ggman'
 #' @param chromosome Chromosome identifier
 #' @param start.position Starting basepair position
 #' @param end.position Ending basepair position
 #' @param xlabel X axis label
 #' @param ylabel Y axis label
 #' @param title Plot title
+#' @param highlight.group Name of the column containing grouping variable in the parent data.frame that was used to create main ggplot layer.
+#' @param legend.title title for legend; default is 'legend'
+#' @param legend.remove if TRUE, the legend will be removed; default is FALSE
 #' @param ... other arguments to pass to \code{\link{geom_point}}
 #'
 #' @examples
@@ -24,7 +27,7 @@ ggmanZoom <- function(
                       ylabel = NA,
                       title = NA,
                       highlight.group = NA,
-                      legend.title = NA,
+                      legend.title = "legend",
                       legend.remove = FALSE,
                       ...
                       ){
@@ -62,10 +65,6 @@ ggmanZoom <- function(
 
     if(is.na(ylabel)){
         ylabel = expression(paste("-log" ["10"],"P Value"))
-    }
-
-    if(is.na(legend.title)){
-        legend.title = "legend"
     }
 
     if(is.na(highlight.group)){

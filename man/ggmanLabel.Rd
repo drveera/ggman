@@ -8,9 +8,9 @@ ggmanLabel(ggmanPlot, labelDfm, snp = "snp", label = "label",
   type = "label", ...)
 }
 \arguments{
-\item{ggmanPlot}{A ggplot layer of class 'ggplot'; see \code{\link{ggman}}}
+\item{ggmanPlot}{A ggplot layer of class 'ggman'; see \code{\link{ggman}}}
 
-\item{labelDfm}{A data frame containing the SNPs and the labels;}
+\item{labelDfm}{A data frame object with the SNPs and the labels;}
 
 \item{snp}{Name of the column containing the markers;}
 
@@ -21,7 +21,7 @@ ggmanLabel(ggmanPlot, labelDfm, snp = "snp", label = "label",
 \item{...}{other arguments applicable to \code{\link[ggrepel]{geom_text_repel}} or \code{\link[ggrepel]{geom_label_repel}}}
 }
 \description{
-Label a subset of points in the ggman plot.
+Label points in the ggman plot.
 }
 \details{
 This function adds a layer of textual annotation using \code{\link[ggrepel]{geom_label_repel }}(if type = "label") or \code{\link[ggrepel]{geom_text_repel}} (if type = "text")

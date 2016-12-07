@@ -4,8 +4,8 @@
 #' 
 check.input.ggmanHighlight <- function(){
     ## ggmanPlot input
-    if(! any(class(ggmanPlot) == "ggplot")){
-        stop("The ggmanPlot input is not a ggplot layer")
+    if(! any(class(ggmanPlot) == "ggman")){
+        stop("The ggmanPlot input is not a ggman object")
     }
     ## highlight input
     if(! is.vector(highlight)){

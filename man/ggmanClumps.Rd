@@ -4,8 +4,8 @@
 \alias{ggmanClumps}
 \title{ggmanClumps}
 \usage{
-ggmanClumps(plink.clumped, index.snp.column, clumps.column, color.column = NA,
-  label.column = NA, group.column = NA)
+ggmanClumps(plink.clumped, index.snp.column, clumps.column, label.column = NA,
+  group.column = NA)
 }
 \arguments{
 \item{plink.clumped}{A data frame read from plink.clumped file.}

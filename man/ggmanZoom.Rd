@@ -6,10 +6,10 @@
 \usage{
 ggmanZoom(ggmanPlot, chromosome, start.position = NA, end.position = NA,
   xlabel = NA, ylabel = NA, title = NA, highlight.group = NA,
-  legend.title = NA, legend.remove = FALSE, ...)
+  legend.title = "legend", legend.remove = FALSE, ...)
 }
 \arguments{
-\item{ggmanPlot}{A ggplot object of class 'ggplot'}
+\item{ggmanPlot}{A ggplot object of class 'ggman'}
 
 \item{chromosome}{Chromosome identifier}
 
@@ -22,6 +22,12 @@ ggmanZoom(ggmanPlot, chromosome, start.position = NA, end.position = NA,
 \item{ylabel}{Y axis label}
 
 \item{title}{Plot title}
+
+\item{highlight.group}{Name of the column containing grouping variable in the parent data.frame that was used to create main ggplot layer.}
+
+\item{legend.title}{title for legend; default is 'legend'}
+
+\item{legend.remove}{if TRUE, the legend will be removed; default is FALSE}
 
 \item{...}{other arguments to pass to \code{\link{geom_point}}}
 }

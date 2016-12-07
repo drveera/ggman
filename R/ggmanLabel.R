@@ -1,14 +1,14 @@
 #' Add labels to ggman Plot
 #'
-#' Label a subset of points in the ggman plot.
+#' Label points in the ggman plot.
 #'
 #' 
 #' 
 #'
 #' This function adds a layer of textual annotation using \code{\link[ggrepel]{geom_label_repel }}(if type = "label") or \code{\link[ggrepel]{geom_text_repel}} (if type = "text")
 #'
-#' @param ggmanPlot A ggplot layer of class 'ggplot'; see \code{\link{ggman}}
-#' @param labelDfm A data frame containing the SNPs and the labels;  
+#' @param ggmanPlot A ggplot layer of class 'ggman'; see \code{\link{ggman}}
+#' @param labelDfm A data frame object with the SNPs and the labels;  
 #' @param snp Name of the column containing the markers;
 #' @param label Name of the column containing the labels; It can be the snp column itself.
 #' @param type type of label; either "label" or "text"; see details section

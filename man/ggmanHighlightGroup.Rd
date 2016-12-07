@@ -8,13 +8,13 @@ ggmanHighlightGroup(ggmanPlot, highlightDfm, snp = "snp", group = "group",
   legend.title = "legend", legend.remove = FALSE, ...)
 }
 \arguments{
-\item{ggmanPlot}{A ggman plot}
+\item{ggmanPlot}{A ggman plot of class 'ggman'; see \code{\link{ggman}}}
 
-\item{highlightDfm}{A data frame with the snps to highlight}
+\item{highlightDfm}{A data frame object; one of the columns should contain snps identifiers}
 
 \item{snp}{Name of the snp column}
 
-\item{group}{Name of the grouping column}
+\item{group}{Name of the grouping column; if all the snps are to be highlighted with same colour use \code{\link{ggmanHighlight}}}
 
 \item{legend.title}{Title of the legend.}
 
@@ -26,7 +26,7 @@ ggmanHighlightGroup(ggmanPlot, highlightDfm, snp = "snp", group = "group",
 A manhattan plot with highlighted markers
 }
 \description{
-Highlights groups of points in the ggman plot and add a legend.
+Highlights groups of points in the ggman Manhattan Plot and add a legend.
 }
 \examples{
 

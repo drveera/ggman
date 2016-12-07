@@ -1,7 +1,7 @@
 check.input.ggmanZoom <- function(){
     ## ggmanPlot input
-    if(! any(class(ggmanPlot) == "ggplot")){
-        stop("The ggmanPlot input is not a ggplot layer")
+    if(! any(class(ggmanPlot) == "ggman")){
+        stop("The ggmanPlot input is not a ggman object")
     }
 
     ## chromosome input
@@ -15,10 +15,11 @@ check.input.ggmanZoom <- function(){
 
     ## start position
     if(! is.na(start.position)){
-            if(! is.numeric(start.position)){
+           if(! is.numeric(start.position)){
         stop("The start.position is not numeric")
             }
     }
+
 
     ## end.position
     if(! is.na(end.position)){
@@ -47,4 +48,26 @@ check.input.ggmanZoom <- function(){
             stop("title input is not character")
         }
     }
+
+    ## highlight.group
+    if(! is.na(highlight.group)){
+        if(! is.character(highlight.group)){
+            stop("The highlight.group input is not character")
+        }
+
+        if(! highlight.group %in% names(ggmanPlot[[1]])){
+            stop(paste0("The column ", highlight.group," is not present in the parent data.frame"))
+        }        
+    }
+
+    ## legend.title
+    if(! is.character(legend.title)){
+        stop("The legend.title input is not a character")
+    }
+
+    ## legend.remove
+    if(! is.logical(legend.remove)){
+        stop("The legend.remove input is not logical")
+    }
+    
 }

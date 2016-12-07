@@ -1,11 +1,11 @@
 #' Highlight groups of points in Manhattan plot
 #'
-#' Highlights groups of points in the ggman plot and add a legend.
+#' Highlights groups of points in the ggman Manhattan Plot and add a legend.
 #'
-#' @param ggmanPlot A ggman plot
-#' @param highlightDfm A data frame with the snps to highlight
+#' @param ggmanPlot A ggman plot of class 'ggman'; see \code{\link{ggman}}
+#' @param highlightDfm A data frame object; one of the columns should contain snps identifiers 
 #' @param snp Name of the snp column
-#' @param group Name of the grouping column
+#' @param group Name of the grouping column; if all the snps are to be highlighted with same colour use \code{\link{ggmanHighlight}}
 #' @param legend.title Title of the legend.
 #' @param legend.remove If TRUE, legend will be removed.
 #' @param ... other arguments passed to \code{\link[ggplot2]{geom_point}}

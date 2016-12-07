@@ -5,8 +5,8 @@
 #' 
 check.input.ggmanLabel <- function(){
     ## ggmanPlot input
-    if(! any(class(ggmanPlot) == "ggplot")){
-        stop("The ggmanPlot input is not a ggplot object")
+    if(! any(class(ggmanPlot) == "ggman")){
+        stop("The ggmanPlot input is not a ggman object")
     }
 
     ## labelDfm input

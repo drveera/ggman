@@ -2,10 +2,10 @@
 #'
 #' Highlights a specific subset of points in the Manhattan plot
 #'
-#' @param ggmanPlot A ggman plot
+#' @param ggmanPlot A ggman plot of class 'ggman'
 #' @param highlight A character vector of SNP ids to highlight
 #' @param colour highlight colour
-#' @param ... other arguments passed to \code{\link[ggplot2]{geom_pont}}
+#' @param ... other arguments passed to \code{\link[ggplot2]{geom_point}}
 #' 
 #'
 #' @return A manhattan plot with highlighted markers
@@ -22,7 +22,7 @@ ggmanHighlight <- function(ggmanPlot, highlight,colour = "red",
     dfm <- ggmanPlot[[1]]
     dfm <- dfm[dfm$snp %in% highlight,]
     if(nrow(dfm) == 0){
-        stop("None of the markers in highlight input is present in the Manhattan plot layer")
+        stop("None of the markers in the input is present in the Manhattan plot layer")
     }
     ggmanPlot +
         scale_colour_grey(start = 0.5,end = 0.6) +

@@ -10,10 +10,13 @@
 ggmanClumps <- function(plink.clumped,
                         index.snp.column,
                         clumps.column,
-                        color.column = NA,
                         label.column = NA,
                         group.column = NA
                         ){
+
+    ##check inputs
+    environment(check.input.ggmanClumps) <- environment()
+    check.input.ggmanClumps()
 
     clump.snps <- plink.clumped[,clumps.column]
     clump.snps <- as.character(clump.snps)
@@ -24,12 +27,6 @@ ggmanClumps <- function(plink.clumped,
     ##index snp
     clump.index <- as.character(plink.clumped[,index.snp.column])
 
-    ## color
-    if(! is.na(color.column)){
-        clump.colors <- as.character(plink.clumped[,color.column])
-    } else {
-        clump.colors <- NA
-    }
 
     ##labels
     if(! is.na(label.column)){
@@ -44,8 +41,8 @@ ggmanClumps <- function(plink.clumped,
     } else {
         clump.groups <- NA
     }
-    clumps <- list(clump.snps,clump.index,clump.colors,clump.labels,clump.groups)
-    names(clumps) <- c("clump.snps","clump.index","clump.colors","clump.labels","clump.groups")
+    clumps <- list(clump.snps,clump.index,clump.labels,clump.groups)
+    names(clumps) <- c("clump.snps","clump.index","clump.labels","clump.groups")
     class(clumps) <- append(class(clump.snps), "ggmanClumps")
     return(clumps)
 }

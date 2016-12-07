@@ -7,19 +7,19 @@
 ggmanHighlight(ggmanPlot, highlight, colour = "red", size = 0.1, ...)
 }
 \arguments{
-\item{ggmanPlot}{A ggman plot}
+\item{ggmanPlot}{A ggman plot of class 'ggman'}
 
 \item{highlight}{A character vector of SNP ids to highlight}
 
 \item{colour}{highlight colour}
 
-\item{...}{other arguments passed to \code{\link[ggplot2]{geom_pont}}}
+\item{...}{other arguments passed to \code{\link[ggplot2]{geom_point}}}
 }
 \value{
 A manhattan plot with highlighted markers
 }
 \description{
-Highlights a specific subset of points in the ggman plot
+Highlights a specific subset of points in the Manhattan plot
 }
 \examples{
 

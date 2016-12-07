@@ -3,9 +3,11 @@ title: "ggman"
 author: "Veera M Rajagopal"
 date: "12/5/2016"
 output:
+  pdf_document:
+    toc: yes
   html_document:
-    toc: true
     theme: united
+    toc: yes
 ---
 
 ## ggman: R package to create Manhattan plot using ggplot. 
@@ -33,7 +35,8 @@ ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
 By enabling the relative positioning, the base pair positions will be scaled in proportion to the real genome positions. Hence, the gaps with no SNPs can be visualized. Be default this is not enabled. To use the relative positions, use the option `relative.positions = TRUE`
 
 ```{r}
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE)
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", 
+      relative.positions = TRUE)
 ```
 
 
@@ -56,7 +59,8 @@ The name of the columns with snps and labels has to be supplied. In this case, w
 
 ```{r}
 ## save the main layer in a variable
-p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE)
+p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", 
+            relative.positions = TRUE)
 
 ##add label
 ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp")
@@ -102,13 +106,15 @@ head(toy.highlights.group)
 Unlike `ggmanHighllight`, the function `ggmanHighlightGroup` requires data.frame as an input. One of the column names should be supplied as a grouping variable. The size of the highlighted points can be changed with `size` argument. The legend title can be specified with `legend.title` argument. 
 
 ```{r}
-ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", size = 0.5, legend.title = "Significant groups")
+ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", 
+                    size = 0.5, legend.title = "Significant groups")
 ```
 
 It is also possible to remove the legend using `legend.remove` argument. 
 
 ```{r}
-ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", size = 0.5, legend.remove = TRUE)
+ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", 
+                    size = 0.5, legend.remove = TRUE)
 ```
 
 ### Add SNP clumps 
@@ -133,7 +139,8 @@ toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column =
 4. Pass the toy.clumped object to `clumps=` argument of `ggman` function.
 
 ```{r}
-ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
+ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", 
+      relative.positions = TRUE, pointSize = 0.5)
 ```
 
 
@@ -142,15 +149,18 @@ ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pva
 The clumps can be grouped using a grouping variable and the index SNPs can be labelled with user prefered labels. All you need to do is to add additional columns in the plink.clumped file and specify them in the `ggmanClumps` function. Here in the example `toy.clumped` file, there are 2 extra columns with names 'group' and 'label'. 
 
 ```{r}
-toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2", group.column = "group", label.column = "label") 
-ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
+toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2", 
+                          group.column = "group", label.column = "label") 
+ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", 
+      pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
 
 ```
 
 Use `legend.title` to change the legend title. If you prefer plain text without box for labels, use `clumps.label.type = 'text`
 
 ```{r}
-ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5, legend.title = "Groups", clumps.label.type = 'text')
+ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", 
+      relative.positions = TRUE, pointSize = 0.5, legend.title = "Groups", clumps.label.type = 'text')
 ```
 
 
@@ -176,28 +186,32 @@ ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 2385806
 It's also possible to highlight using specific grouping variable. Here we have a column named `gene` in the main data frame `toy.gwas` that was used to construct the main layer `p1`. 
 
 ```{r}
-ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695, highlight.group = "gene", legend.title = "Genes")
+ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695, 
+          highlight.group = "gene", legend.title = "Genes")
 ```
 
 ### Create an inverted Manhattan plot
 
-An inverted Manhattan plot can be created by inverting the direction of p values of variants with negative beta values (or odds ratio < 1). 
+An inverted Manhattan plot can be created by inverting the direction of p values of variants with negative beta values (or odds ratio < 1). Set the argument `invert` to `TRUE` to get an inverted Manhattan plot. If `invert=TRUE`, then `invert.method` and `invert.var` should be specified. The `invert.method` can be either `or` or `beta`. The `invert.var` is the name of the column containing the beta or odds ratio according to the value passed to `invert.method`
 
 ```{r}
-ggmanInvert(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", effect = "or", method = "or")
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", invert = TRUE,
+      invert.method = 'or', invert.var = "or")
 ```
 
 
 ### Plot Odds ratio
 
 ```{r}
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or", logTransform = FALSE, ymax = 3)
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or", 
+      logTransform = FALSE, ymax = 3)
 ```
 
 
 ### Plot beta
 ```{r}
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "beta", logTransform = FALSE, ymin = -2, ymax = 2)
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "beta", 
+      logTransform = FALSE, ymin = -2, ymax = 2)
 ```
 
 

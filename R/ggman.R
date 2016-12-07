@@ -20,6 +20,9 @@
 #' @param ymax Ending point of y axis
 #' @param logTransform if TRUE, P value is -log10 transformed; default is TRUE; Specify FALSE
 #' when plotting values other p values, such as zscore or beta
+#' @param invert if TRUE, an inverted Manhattan Plot will be created. The p values of the variants with (or < 1 or beta < 0) will positive log10-transformed, which will result in negative values. 
+#' @param invert.method whether inversion should be based on odds ratio or beta. possible values: 'or' or 'beta'
+#' @param invert.var name of the column in the gwas data.frame containing the or or beta
 #' @param relative.positions if TRUE, the x axis points will be calculated in proportion to the basepair positions. So, the gaps in the genome with no genotypes will be reflected in the plot(requires more computation, hence more time to plot). If FALSE, the SNPs are ascendingly sorted chromosome-wise. The default value is FALSE. 
 #' @param xlabel X-axis label
 #' @param ylabel Y-axis label
@@ -56,8 +59,9 @@ ggman <- function(gwas,
                   sigLine = 8,
                   lineColour = "red",
                   pointSize = 0.1,
-                  ymin = 0, ymax = NA,
+                  ymin = NA, ymax = NA,
                   logTransform = TRUE,
+                  invert = FALSE, invert.method='or',invert.var='or',
                   relative.positions = FALSE,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot",
                   legend.title = "legend", clumps.label.type = 'label', legend.remove = FALSE, ...) {
@@ -123,8 +127,25 @@ ggman <- function(gwas,
     dfmsplit <- split(dfm, dfm$chrom)
     xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
 
+    ##invert
+    if(invert){
+        if(invert.method == 'or'){                        
+            dfm$or <- as.numeric(as.character(gwas[,invert.var]))
+            dfm$sign <- with(dfm, replace(pvalue,or > 1, 1))
+            dfm$sign <- with(dfm, replace(sign, sign != 1, -1))
+        } else {
+            dfm$beta <- as.numeric(as.character(gwas[,invert.var]))
+            dfm$sign <- with(dfm, replace(beta, beta > 0, 1))
+            dfm$sign <- with(dfm, replace(sign, sign != 1, -1))
+        }
+        dfm$marker <- with(dfm, -log10(pvalue) * sign)
+        ##axis
+        if(is.na(ymin)){
+            ymin = ymax * -1
+        }        
+    }
+    
 
-    dfm <- dfm
     if (!is.na(clumps)[1]){
         if (!any(class(clumps) == "ggmanClumps")) {
             stop("clumps argument takes an object of class ggmanclumps;see ggmanClumps function")
@@ -141,9 +162,15 @@ ggman <- function(gwas,
             labs(x = xlabel, y = ylabel, title = title)
 
     if(!is.na(sigLine)){
-        p1 + geom_hline(aes(yintercept= as.numeric(sigLine)),
+        p1 <- p1 + geom_hline(aes(yintercept= as.numeric(sigLine)),
                         colour = lineColour, size = 0.25) 
-            }
+    }
+        if(invert){
+            p1 <- p1 + geom_hline(aes(yintercept= as.numeric(sigLine) * -1),
+                                  colour = lineColour, size = 0.25) +
+                geom_hline(aes(yintercept= 0),colour = "white", size = 0.25)
+        }
+        class(p1) <- append(class(p1), "ggman")
         return(p1)
     }
     

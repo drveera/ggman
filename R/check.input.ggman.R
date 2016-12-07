@@ -69,9 +69,12 @@ check.input.ggman <- function(){
     }
 
     ## ymin input
-    if(! is.numeric(ymin)){
-        stop("The ymin input is not numeric")
+    if(! is.na(ymin)){
+        if(! is.numeric(ymin)){
+            stop("The ymin input is not numeric")
+        }
     }
+
 
     ## ymax input
     if(!is.na(ymax)){
@@ -85,6 +88,29 @@ check.input.ggman <- function(){
         stop("The logTransform input is not logical")
     }
 
+    ## invert
+    if(! is.logical(invert)){
+        stop("The invert input is not logical")
+    }
+    
+    ## invert.method
+    if(! is.character(invert.method)){
+        stop("The invert.method input is not character")
+    }
+
+    if(! any(invert.method %in% c("or","beta"))){
+        stop("The invert.method argument can take values: 'or' or 'beta'")
+    }
+
+    ##invert.var
+    if(! is.character(invert.var)){
+        stop("The invert.var input is not a character")
+    }
+
+    if(! invert.var %in% names(gwas)){
+        stop(paste0("The column ",invert.var, " is not present in gwas data.frame"))
+    }
+    
     ## relative.positions input
     if(! is.logical(relative.positions)){
         stop("The relative.positions input is not logical")

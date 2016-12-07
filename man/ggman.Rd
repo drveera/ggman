@@ -6,7 +6,8 @@
 \usage{
 ggman(gwas, clumps = NA, snp = "snp", bp = "bp", chrom = "chrom",
   pvalue = "pvalue", sigLine = 8, lineColour = "red", pointSize = 0.1,
-  ymin = 0, ymax = NA, logTransform = TRUE, relative.positions = FALSE,
+  ymin = NA, ymax = NA, logTransform = TRUE, invert = FALSE,
+  invert.method = "or", invert.var = "or", relative.positions = FALSE,
   xlabel = "chromosome", ylabel = "-log10(P value)",
   title = "Manhattan Plot", legend.title = "legend",
   clumps.label.type = "label", legend.remove = FALSE, ...)
@@ -37,6 +38,12 @@ the SNP clumps, see \code{\link{ggmanClumps}}}
 
 \item{logTransform}{if TRUE, P value is -log10 transformed; default is TRUE; Specify FALSE
 when plotting values other p values, such as zscore or beta}
+
+\item{invert}{if TRUE, an inverted Manhattan Plot will be created. The p values of the variants with (or < 1 or beta < 0) will positive log10-transformed, which will result in negative values.}
+
+\item{invert.method}{whether inversion should be based on odds ratio or beta. possible values: 'or' or 'beta'}
+
+\item{invert.var}{name of the column in the gwas data.frame containing the or or beta}
 
 \item{relative.positions}{if TRUE, the x axis points will be calculated in proportion to the basepair positions. So, the gaps in the genome with no genotypes will be reflected in the plot(requires more computation, hence more time to plot). If FALSE, the SNPs are ascendingly sorted chromosome-wise. The default value is FALSE.}
 
