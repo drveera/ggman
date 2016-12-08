@@ -124,13 +124,14 @@ ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 2385806
 ```
 ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", invert = TRUE, invert.method = 'or', invert.var = "or")
 ```
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p12a.png)
 
 ### Plot Odds Ratio
 ```
 ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or", logTransform = FALSE, ymax = 3)
 ```
 
-![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p12a.png)
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/oddsratio.png)
 
 ### Plot Beta Values
 
