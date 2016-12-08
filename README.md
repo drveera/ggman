@@ -102,7 +102,7 @@ ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pva
 ggmanZoom(p1, chromosome = 1)
 ```
 
-
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p9.png)
 
 ### Zoom in to a specific region of a chromosome
 ```
