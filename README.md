@@ -85,6 +85,7 @@ toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column =
 ggman(toy.gwas,clumps = toy.clumps, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE, pointSize = 0.5)
 ```
 
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p7.png)
 
 ### highlight and label the clumps
 
