@@ -23,6 +23,9 @@ Please refer to package vignette and the wiki page for detailed information on t
 ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
 ```
 
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p1.png)
+
+
 ### Use relative positioning 
 
 ```
