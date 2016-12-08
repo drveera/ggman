@@ -117,6 +117,7 @@ ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 2385806
 ```
 ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695, highlight.group = "gene", legend.title = "Genes")
 ```
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p11.png)
 
 ### Inverted Manhattan Plot
 
