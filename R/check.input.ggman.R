@@ -1,3 +1,18 @@
+# global variables to escape r cmd check
+utils::globalVariables(c("gwas","clumps",
+                           "snp","bp","chrom","pvalue",
+                           "sigLine",
+                           "lineColour",
+                           "pointSize",
+                           "ymin",
+                           "ymax",
+                           "logTransform",
+                           "invert",
+                           "invert.method",
+                           "invert.var",
+                           "relative.positions",
+                           "xlabel","ylabel","title","legend.title","clumps.label.type","legend.remove"))
+
 #' This function checks the user input for the function ggman.R
 #'
 #' @keywords internal
@@ -5,30 +20,7 @@
 #' 
 ####checks###
 
-check.input.ggman <- function(
-                              gwas = gwas,
-                              clumps = clumps,
-                              snp = snp,
-                              bp = bp,
-                              chrom = chrom,
-                              pvalue = pvalue,
-                              sigLine = sigLine,
-                              lineColour = lineColour,
-                              pointSize = pointSize,
-                              ymin=ymin,
-                              ymax=ymax,
-                              logTransform=logTransform,
-                              invert=invert,
-                              invert.method=invert.method,
-                              invert.var=invert.var,
-                              relative.positions = relative.positions,
-                              xlabel=xlabel,
-                              ylabel=ylabel,
-                              title=title,
-                              legend.title=legend.title,
-                              clumps.label.type=clumps.label.type,
-                              legend.remove=legend.remove
-                              ){
+check.input.ggman <- function(){
     ## gwas input
     if(!any(class(gwas) == "data.frame")){
         stop("The gwas input is not a data frame")

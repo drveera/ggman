@@ -1,16 +1,11 @@
+
+utils::globalVariables(c("length.remove","highlightDfm"))
 #' This function checks the input for the function ggmanHighlightGroup
 #'
 #' @keywords internal
 #'
 #' 
-check.input.ggmanHighlightGroup <- function(
-                                            ggmanPlot = ggmanPlot,
-                                            highlightDfm = highlightDfm,
-                                            snp = snp,
-                                            group = group,
-                                            legend.title = legend.title,
-                                            legend.remove = length.remove
-                                            ){
+check.input.ggmanHighlightGroup <- function(){
         ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman layer")

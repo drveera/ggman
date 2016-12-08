@@ -23,10 +23,10 @@ Process the clumped file from plink
 }
 \examples{
 
-no label and no highlights
+#just the clumps, with no label and no highlights
 toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2")
 
-add labels and highlights
+#add labels and highlights
 toy.clumps <- ggmanClumps(toy.clumped, index.snp.column = "SNP", clumps.column = "SP2",
                           group.column = "group", label.column = "label")
 

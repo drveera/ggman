@@ -3,10 +3,10 @@ title: "ggman"
 author: "Veera M Rajagopal"
 date: "12/5/2016"
 output:
-  pdf_document:
-    toc: yes
   html_document:
     theme: united
+    toc: yes
+  pdf_document:
     toc: yes
 ---
 

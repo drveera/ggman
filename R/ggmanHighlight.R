@@ -11,7 +11,8 @@
 #' @return A manhattan plot with highlighted markers
 #'
 #' @examples
-#'
+#' p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+#' pvalue = "pvalue")
 #' ggmanHighlight(p1, highlight = toy.highlights)
 #'
 #' @export

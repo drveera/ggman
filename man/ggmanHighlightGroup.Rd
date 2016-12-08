@@ -30,6 +30,8 @@ Highlights groups of points in the ggman Manhattan Plot and add a legend.
 }
 \examples{
 
+p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+pvalue = "pvalue")
 ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group",
                     size = 0.5, legend.title = "Significant groups")
 

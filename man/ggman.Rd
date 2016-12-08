@@ -73,24 +73,25 @@ and additional layers can be added. See \code{\link{ggmanHighlight}}, \code{\lin
 \examples{
 
 #simple Manhattan Plot
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+pvalue = "pvalue")
 
 #enable relative positioning
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
-      relative.positions = TRUE)
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+pvalue = "pvalue",relative.positions = TRUE)
 
 #plot odds ratio
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or",
-      logTransform = FALSE, ymax = 3)
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+pvalue = "or",logTransform = FALSE, ymax = 3)
 
 #plot beta
 ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "beta",
-      logTransform = FALSE, ymin = -2, ymax = 2)
+logTransform = FALSE, ymin = -2, ymax = 2)
 
-#inverted Manhattan plot
+#inverted Manhattan plot 
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
+invert = TRUE, invert.method = 'or', invert.var = "or")
 
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", invert = TRUE,
-      invert.method = 'or', invert.var = "or")
 
 
 

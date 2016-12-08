@@ -1,12 +1,10 @@
+
+utils::globalVariables(c("col2rgb","highlight","colour"))
 #' This function checks the input arguments to the function ggmanHighlight
 #'
 #' @keywords internal
 #' 
-check.input.ggmanHighlight <- function(
-                                       ggmanPlot = ggmanPlot,
-                                       highlight = highlight,
-                                       colour=colour
-                                       ){
+check.input.ggmanHighlight <- function(){
     ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman object")

@@ -1,15 +1,11 @@
+
+utils::globalVariables(c("ggmanPlot","labelDfm","label","type"))
 #' This function checks the user input for the function ggmanLabel.R
 #'
 #' @keywords internal
 #'
 #' 
-check.input.ggmanLabel <- function(
-                                   ggmanPlot = ggmanPlot,
-                                   labelDfm = labelDfm,
-                                   snp = snp,
-                                   label = label,
-                                   type = type
-                                   ){
+check.input.ggmanLabel <- function(){
     ## ggmanPlot input
     if(! any(class(ggmanPlot) == "ggman")){
         stop("The ggmanPlot input is not a ggman object")

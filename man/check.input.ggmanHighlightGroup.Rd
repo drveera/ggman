@@ -4,9 +4,7 @@
 \alias{check.input.ggmanHighlightGroup}
 \title{This function checks the input for the function ggmanHighlightGroup}
 \usage{
-check.input.ggmanHighlightGroup(ggmanPlot = ggmanPlot,
-  highlightDfm = highlightDfm, snp = snp, group = group,
-  legend.title = legend.title, legend.remove = length.remove)
+check.input.ggmanHighlightGroup()
 }
 \description{
 This function checks the input for the function ggmanHighlightGroup

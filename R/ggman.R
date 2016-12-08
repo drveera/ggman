@@ -1,3 +1,7 @@
+
+# global variables to escape r cmd check
+utils::globalVariables(c("index","marker","chrom_alt","group"))
+
 #' Creates a Manhattan Plot.
 #'
 #' Creates a Manhattan Plot as a ggplot layer.
@@ -42,30 +46,31 @@
 #' @examples
 #'
 #'#simple Manhattan Plot
-#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
+#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+#' pvalue = "pvalue")
 #'
 #' #enable relative positioning
-#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
-#'       relative.positions = TRUE)
+#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+#' pvalue = "pvalue",relative.positions = TRUE)
 #'
 #' #plot odds ratio
-#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or",
-#'       logTransform = FALSE, ymax = 3)
+#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+#' pvalue = "or",logTransform = FALSE, ymax = 3)
 #' 
 #' #plot beta
 #' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "beta",
-#'       logTransform = FALSE, ymin = -2, ymax = 2)
+#' logTransform = FALSE, ymin = -2, ymax = 2)
 #'
-#' #inverted Manhattan plot
-#' 
-#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", invert = TRUE,
-#'       invert.method = 'or', invert.var = "or")
-#' 
-#'
-#' 
+#' #inverted Manhattan plot 
+#' ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
+#' invert = TRUE, invert.method = 'or', invert.var = "or")
 #' 
 #'
 #' 
+#' 
+#'
+#' 
+#'
 #'
 #' @export
 ggman <- function(gwas,
@@ -81,7 +86,9 @@ ggman <- function(gwas,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot",
                   legend.title = "legend", clumps.label.type = 'label', legend.remove = FALSE, ...) {
 
-    ###check the inputs
+    ##define global variables to escape R CMD check
+   
+    ##check the inputs    
     environment(check.input.ggman) <- environment()
     check.input.ggman()
     dfm <- gwas

@@ -12,7 +12,8 @@ data(toy.clumped)
 The dataset 'toy.clumped' is a data.frame object containing the index SNPs and the SNP clumps.
 }
 \details{
-The file is similar to a 'plink.clumped' output of plink. The plink.clumped file read into a data.frame object and only the columns, "SNP" and "SP2" are retained.
+The file is similar to a 'plink.clumped' output of plink. The plink.clumped file read into a data.frame object and only the
+columns, "SNP" and "SP2" are retained.
 }
 \keyword{datasets}
 

@@ -37,6 +37,8 @@ Zoom in to a specific region of the Manhattan Plot
 \examples{
 
 #specific chromosome
+p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+pvalue = "pvalue")
 ggmanZoom(p1, chromosome = 1)
 
 #specific region

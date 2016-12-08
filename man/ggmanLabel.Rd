@@ -24,11 +24,16 @@ ggmanLabel(ggmanPlot, labelDfm, snp = "snp", label = "label",
 Label points in the ggman plot.
 }
 \details{
-This function adds a layer of textual annotation using \code{\link[ggrepel]{geom_label_repel }}(if type = "label") or \code{\link[ggrepel]{geom_text_repel}} (if type = "text")
+This function adds a layer of textual annotation using \code{\link[ggrepel]{geom_label_repel}}(if type = "label") or
+\code{\link[ggrepel]{geom_text_repel}} (if type = "text").
 }
 \examples{
 
 #label type annotations
+p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom",
+pvalue = "pvalue")
+#subset significant snps
+toy.gwas.sig <- toy.gwas[-log10(toy.gwas$pvalue)>8,]
 ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp")
 
 

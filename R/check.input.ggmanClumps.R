@@ -1,3 +1,5 @@
+
+utils::globalVariables(c("plink.clumped","index.snp.column","clumps.column","label.column","group.column","group.column"))
 #' This function checks the user input for the function ggmanClumps.R
 #'
 #' @keywords internal
@@ -5,13 +7,7 @@
 #' 
 ####checks###
 
-check.input.ggmanClumps <- function(
-                                    plink.clumped = plink.clumped,
-                                    index.snp.column = index.snp.column,
-                                    clumps.column = clumps.column,
-                                    label.column = label.column,
-                                    group.column = group.column
-                                    ){
+check.input.ggmanClumps <- function(){
     ##plink.clumped
     if(! any(class(plink.clumped) == 'data.frame')){
         stop("The plink.clumped input is not a data.frame")
