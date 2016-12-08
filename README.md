@@ -107,7 +107,10 @@ ggmanZoom(p1, chromosome = 1)
 ### Zoom in to a specific region of a chromosome
 ```
 ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695)
+
 ```
+
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p10.png)
 
 ### Highlight points in the zoomed region
 
