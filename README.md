@@ -130,6 +130,8 @@ ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", inve
 ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or", logTransform = FALSE, ymax = 3)
 ```
 
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p12a.png)
+
 ### Plot Beta Values
 
 ```
