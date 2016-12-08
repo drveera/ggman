@@ -135,3 +135,5 @@ ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "or", logTrans
 ```
 ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "beta", logTransform = FALSE, ymin = -2, ymax = 2)
 ```
+
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p13.png)
