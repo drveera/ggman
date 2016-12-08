@@ -6,6 +6,10 @@
 ##Note: 
 The package is currently under development.  Please raise issues for any bugs you identify.
 
+##Version
+
+0.99.0.beta
+
 ## Installation
 
 ```
