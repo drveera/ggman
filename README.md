@@ -64,12 +64,16 @@ ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp", type = "text
 ggmanHighlight(p1, highlight = toy.highlights)
 ```
 
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p5.png)
+
 ### Multiple Highlights
 
 ```
 ggmanHighlightGroup(p1, highlightDfm = toy.highlights.group, snp = "snp", group = "group", 
                     size = 0.5, legend.title = "Significant groups")
 ```
+
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p6.png)
 
 ### Add clumps
 
