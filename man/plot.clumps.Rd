@@ -4,16 +4,7 @@
 \alias{plot.clumps}
 \title{plot.clumps}
 \usage{
-\method{plot}{clumps}(gwas = gwas, clumps = clumps, snp = snp, bp = bp,
-  chrom = chrom, pvalue = pvalue, sigLine = sigLine,
-  lineColour = lineColour, pointSize = pointSize, ymin = ymin,
-  ymax = ymax, logTransform = logTransform, invert = invert,
-  invert.method = invert.method, invert.var = invert.var,
-  relative.positions = relative.positions, xlabel = xlabel,
-  ylabel = ylabel, title = title, legend.title = legend.title,
-  clumps.label.type = clumps.label.type, legend.remove = legend.remove,
-  index = index, marker = marker, chrom_alt = chrom_alt,
-  xbreaks = xbreaks)
+\method{plot}{clumps}()
 }
 \description{
 plot.clumps

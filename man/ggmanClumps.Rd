@@ -19,7 +19,7 @@ ggmanClumps(plink.clumped, index.snp.column, clumps.column, label.column = NA,
 \item{group.column}{Name of the column containing the grouping variable}
 }
 \description{
-Process the clumped file from plink
+Process the clumped file from plink.
 }
 \examples{
 
