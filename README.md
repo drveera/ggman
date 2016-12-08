@@ -29,8 +29,7 @@ ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue")
 ### Use relative positioning 
 
 ```
-ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", 
-      relative.positions = TRUE)
+ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE)
 ```
 
 ![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p2.png)
@@ -42,14 +41,13 @@ ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
 toy.gwas.sig <- toy.gwas[-log10(toy.gwas$pvalue)>8,]
 
 ## save the main layer in a variable
-p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", 
-            relative.positions = TRUE)
+p1 <- ggman(toy.gwas, snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue", relative.positions = TRUE)
 
 ##add label
 ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp")
 ```
 
-
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p3.png)
 ### Add text
 
 ```
