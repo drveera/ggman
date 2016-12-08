@@ -54,6 +54,7 @@ ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp")
 ggmanLabel(p1, labelDfm = toy.gwas.sig, snp = "snp", label = "snp", type = "text")
 ```
 
+![enter image description here](https://github.com/veera-dr/storage_ggman/blob/master/plots/p4.png)
 
 
 
