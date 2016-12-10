@@ -6,6 +6,9 @@
 \usage{
 \method{plot}{clumps}()
 }
+\value{
+Nothing; internal function.
+}
 \description{
 plot.clumps
 }

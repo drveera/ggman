@@ -3,6 +3,9 @@ utils::globalVariables(c("chromosome","start.position","end.position","highlight
 #'
 #' @keywords internal
 #'
+#' @return Nothing; internal function.
+#'
+#' 
 #' 
 ####checks###
 

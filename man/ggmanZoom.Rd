@@ -31,6 +31,9 @@ ggmanZoom(ggmanPlot, chromosome, start.position = NA, end.position = NA,
 
 \item{...}{other arguments to pass to \code{\link{geom_point}}}
 }
+\value{
+A regional association plot
+}
 \description{
 Zoom in to a specific region of the Manhattan Plot
 }

@@ -6,6 +6,9 @@
 \usage{
 check.input.ggmanZoom()
 }
+\value{
+Nothing; internal function.
+}
 \description{
 This function checks the user input for the function ggmanZoom
 }

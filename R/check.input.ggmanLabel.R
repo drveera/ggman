@@ -4,6 +4,8 @@ utils::globalVariables(c("ggmanPlot","labelDfm","label","type"))
 #'
 #' @keywords internal
 #'
+#' @return Nothing; internal function.
+#' 
 #' 
 check.input.ggmanLabel <- function(){
     ## ggmanPlot input

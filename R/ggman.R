@@ -1,6 +1,6 @@
 
 # global variables to escape r cmd check
-utils::globalVariables(c("index","marker","chrom_alt","group"))
+utils::globalVariables(c("index","marker","chrom_alt","group","xbreaks"))
 
 #' Creates a Manhattan Plot.
 #'
@@ -42,6 +42,9 @@ utils::globalVariables(c("index","marker","chrom_alt","group"))
 #' 
 #' @importFrom gtools mixedorder
 #' 
+#'
+#' @return A Manhattan Plot
+#'
 #' 
 #' @examples
 #'

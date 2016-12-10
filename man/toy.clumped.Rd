@@ -8,6 +8,9 @@
 \usage{
 data(toy.clumped)
 }
+\value{
+data frame
+}
 \description{
 The dataset 'toy.clumped' is a data.frame object containing the index SNPs and the SNP clumps.
 }

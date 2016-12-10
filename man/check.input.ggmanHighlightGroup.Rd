@@ -6,6 +6,9 @@
 \usage{
 check.input.ggmanHighlightGroup()
 }
+\value{
+Nothing; internal function.
+}
 \description{
 This function checks the input for the function ggmanHighlightGroup
 }

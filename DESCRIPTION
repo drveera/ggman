@@ -1,5 +1,5 @@
 Package: ggman
-Version: 0.1
+Version: 0.99.0
 Date: 2016-11-28
 Title: R package for Manhattan Plots
 Description: A ggPlot  wrapper to create Manhattan Plots
@@ -7,10 +7,12 @@ Author: Veera M Rajagopal <veera.ipsych@gmail.com>
 Maintainer: Veera M Rajagopal <veera.ipsych@gmail.com>
 RoxygenNote: 5.0.1
 LazyData: true
+biocViews: Software,WholeGenome,GenomeWideAssociation,Visualization
 Depends:
-	R (>= 3.1),
+	R (>= 3.3),
 	ggplot2 (>= 2.0.0),
 	ggrepel (>= 0.6.5)
 Imports:
 	gtools
 License: GPL-3
+Suggests: testthat

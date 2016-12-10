@@ -18,6 +18,9 @@ ggmanClumps(plink.clumped, index.snp.column, clumps.column, label.column = NA,
 
 \item{group.column}{Name of the column containing the grouping variable}
 }
+\value{
+An object of class 'ggmanClumps'
+}
 \description{
 Process the clumped file from plink.
 }

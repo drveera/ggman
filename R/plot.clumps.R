@@ -2,6 +2,9 @@
 #'
 #' @keywords internal
 #'
+#'
+#' @return Nothing; internal function.
+#'
 #' 
 
 plot.clumps <- function(){

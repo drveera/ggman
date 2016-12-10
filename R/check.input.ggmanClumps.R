@@ -4,6 +4,7 @@ utils::globalVariables(c("plink.clumped","index.snp.column","clumps.column","lab
 #'
 #' @keywords internal
 #'
+#' @return Nothing; internal function. 
 #' 
 ####checks###
 

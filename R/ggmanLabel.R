@@ -19,6 +19,8 @@
 #' 
 #'@import ggrepel
 #' 
+#'@return A labelled Manhattan Plot
+#' 
 #' @examples
 #'
 #' #label type annotations

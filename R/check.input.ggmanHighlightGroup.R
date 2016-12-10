@@ -4,6 +4,9 @@ utils::globalVariables(c("length.remove","highlightDfm"))
 #'
 #' @keywords internal
 #'
+#'
+#' @return Nothing; internal function.
+#'
 #' 
 check.input.ggmanHighlightGroup <- function(){
         ## ggmanPlot input

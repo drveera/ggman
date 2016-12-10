@@ -20,6 +20,9 @@ ggmanLabel(ggmanPlot, labelDfm, snp = "snp", label = "label",
 
 \item{...}{other arguments applicable to \code{\link[ggrepel]{geom_text_repel}} or \code{\link[ggrepel]{geom_label_repel}}}
 }
+\value{
+A labelled Manhattan Plot
+}
 \description{
 Label points in the ggman plot.
 }

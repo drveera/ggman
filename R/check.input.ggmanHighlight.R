@@ -3,6 +3,9 @@ utils::globalVariables(c("col2rgb","highlight","colour"))
 #' This function checks the input arguments to the function ggmanHighlight
 #'
 #' @keywords internal
+#'
+#'@return Nothing; internal function.
+#' 
 #' 
 check.input.ggmanHighlight <- function(){
     ## ggmanPlot input

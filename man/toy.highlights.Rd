@@ -8,6 +8,9 @@
 \usage{
 data(toy.highlights)
 }
+\value{
+A vector
+}
 \description{
 A vector of markers to highlight
 }

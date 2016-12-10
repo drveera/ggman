@@ -10,5 +10,6 @@
 #' 
 #' @keywords datasets
 #'
-#'
+#'@return A vector
+#' 
 "toy.highlights"

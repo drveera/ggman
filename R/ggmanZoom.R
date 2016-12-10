@@ -14,6 +14,8 @@
 #' @param legend.remove if TRUE, the legend will be removed; default is FALSE
 #' @param ... other arguments to pass to \code{\link{geom_point}}
 #'
+#' @return A regional association plot 
+#' 
 #' @examples
 #'
 #' #specific chromosome

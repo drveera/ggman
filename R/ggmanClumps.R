@@ -8,6 +8,7 @@
 #' @param label.column Name of the column containing the labels
 #' @param group.column Name of the column containing the grouping variable 
 #'
+#' @return An object of class 'ggmanClumps'
 #' @examples
 #'
 #' #just the clumps, with no label and no highlights

@@ -10,5 +10,6 @@
 #' 
 #' @keywords datasets
 #'
+#' @return a data frame
 #' 
 "toy.highlights.group"

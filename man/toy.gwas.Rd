@@ -8,6 +8,9 @@
 \usage{
 data(toy.gwas)
 }
+\value{
+A data frame
+}
 \description{
 The dataset 'toy.gwas' is a data.frame object with the summary results of a GWAS analysis.
 }

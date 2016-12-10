@@ -10,5 +10,8 @@
 #' 
 #' @keywords datasets
 #'
+#'
+#' @return A data frame
+#'
 #' 
 "toy.gwas"

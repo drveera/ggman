@@ -6,6 +6,9 @@
 \usage{
 check.input.ggmanLabel()
 }
+\value{
+Nothing; internal function.
+}
 \description{
 This function checks the user input for the function ggmanLabel.R
 }

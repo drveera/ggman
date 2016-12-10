@@ -9,7 +9,9 @@
 #' 
 #' @usage data(toy.clumped)
 #' 
-#' @format A data frame containg SNP clumps in the format similar to plink \code{--clump} output. 
+#' @format A data frame containg SNP clumps in the format similar to plink \code{--clump} output.
+#'
+#' @return data frame
 #' 
 #' @keywords datasets
 #'

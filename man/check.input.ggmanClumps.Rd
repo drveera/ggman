@@ -6,6 +6,9 @@
 \usage{
 check.input.ggmanClumps()
 }
+\value{
+Nothing; internal function.
+}
 \description{
 This function checks the user input for the function ggmanClumps.R
 }

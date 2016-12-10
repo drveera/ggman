@@ -17,6 +17,7 @@ utils::globalVariables(c("gwas","clumps",
 #'
 #' @keywords internal
 #'
+#'@return Nothing; internal function.
 #' 
 ####checks###
 

@@ -8,6 +8,9 @@
 \usage{
 data(toy.highlights.group)
 }
+\value{
+a data frame
+}
 \description{
 A data.frame containing the SNPs, labels and grouping variable.
 }

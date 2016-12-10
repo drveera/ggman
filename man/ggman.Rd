@@ -62,6 +62,9 @@ when plotting values other p values, such as zscore or beta}
 \item{...}{other arguments to pass to \code{\link[ggplot2]{geom_point}};
 Note: do not use \emph{size} to specify size of the points, instead use \emph{pointSize}}
 }
+\value{
+A Manhattan Plot
+}
 \description{
 Creates a Manhattan Plot as a ggplot layer.
 }
