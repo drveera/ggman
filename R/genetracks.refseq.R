@@ -109,9 +109,9 @@ genetracks.refseq <- function(){
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(),
               axis.line = element_line(colour = "grey")) +
-        scale_fill_grey()
+        scale_fill_grey() + labs(fill="strand")
     if(stack.level == 1){
-        p1 + geom_text(data = genetable,aes(x = midpoint,y=-2, label = name2, angle = 90), size = 2, nudge_x = 0, nudge_y =0,
+        p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = 2, nudge_x = 0, nudge_y =0,
                   check_overlap = FALSE, inherit.aes = FALSE) +
         ylim(-2,ymax)
     } else {
