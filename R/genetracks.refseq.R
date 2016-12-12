@@ -8,14 +8,14 @@
 
 genetracks.refseq <- function(){
     library(rtracklayer)
-    #chromosome = 21
-    #start.position = 33031597
-    #end.position = 35051570
+    ##chromosome = 'X'
+    ##start.position = 33031597
+    ##end.position = 35051570
 
     ##get the chromosome number
-    chrom.number <- gsub("[^[:digit:]]", "", chromosome)
+    ##chrom.number <- gsub("[^[:digit:]]", "", chromosome)
     ##create a range object
-    myrange <- GRanges(paste0("chr",chrom.number), IRanges(start.position,end.position))
+    myrange <- GRanges(paste0("chr",chromosome), IRanges(start.position,end.position))
 
     ##query
     mysession = browserSession("UCSC")
@@ -97,18 +97,19 @@ genetracks.refseq <- function(){
         p1+
         geom_rect(data= genetable,
                   aes(xmin = txStart, xmax=txEnd, ymin = gene.ymin,
-                      ymax = gene.ymax),inherit.aes = FALSE) +
+                      ymax = gene.ymax, fill = as.factor(strand)),inherit.aes = FALSE) +
         geom_rect(data = exontable,
                   aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
-                      ymax = exon.ymax),inherit.aes = FALSE) +
+                      ymax = exon.ymax, fill = as.factor(strand)),inherit.aes = FALSE) +
         geom_rect(data = genetable,aes(ymin = gene.ymin, ymax = ymax,
-                                       xmin = txStart, xmax= txEnd),
+                                       xmin = txStart, xmax= txEnd,fill = as.factor(strand)),
                   alpha = 0.05, inherit.aes = FALSE) +
         geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
-                                        ymax = ymax), alpha = 0.02,inherit.aes = FALSE) +
+                                        ymax = ymax, fill = as.factor(strand)), alpha = 0.02,inherit.aes = FALSE) +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(),
-              axis.line = element_line(colour = "grey"))
+              axis.line = element_line(colour = "grey")) +
+        scale_fill_grey()
     if(stack.level == 1){
         p1 + geom_text(data = genetable,aes(x = midpoint,y=-2, label = name2, angle = 90), size = 2, nudge_x = 0, nudge_y =0,
                   check_overlap = FALSE, inherit.aes = FALSE) +
