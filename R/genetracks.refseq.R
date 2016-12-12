@@ -37,6 +37,25 @@ genetracks.refseq <- function(){
     ##make all positive
     mytable$genesize <- with(mytable, ifelse(genesize<0,-genesize,genesize))
 
+    ## sort the table according to txStart position
+    mytable <- mytable[order(mytable$txStart),]
+
+    ## list the name2
+    name2 <- with(mytable, as.character(name2[!duplicated(name2)]))
+    if(stack.level == 1){
+        stacks <- rep(-1,length(name2))
+    }
+    if(stack.level == 2){
+        stacks <- rep(c(-1,-2),length(name2))[1:length(name2)]
+    }
+    if(stack.level == 3){
+        stacks <- rep(c(-1,-2,-3), length(name2))[1:length(name2)]
+    }
+    stack.dfm <- data.frame(name2,stacks)
+
+    ##add to mytable
+    mytable <- merge(mytable,stack.dfm,by = "name2", all.x = TRUE, sort = FALSE)
+    
     ## split with name2
     mytable.split <- split(mytable, mytable$name2)
 
@@ -44,6 +63,7 @@ genetracks.refseq <- function(){
     mytable.split <- lapply(mytable.split, function(x) {
         return(x[x$genesize == max(x$genesize)[1],])
     })
+
 
     genetable <- do.call(rbind,mytable.split)
     genetable <- genetable[!duplicated(genetable$name2),]
@@ -64,16 +84,17 @@ genetracks.refseq <- function(){
     exontable$exon.start <- as.numeric(as.character(exontable$exon.start))
     exontable$exon.end <- as.numeric(as.character(exontable$exon.end))
 
+
     ##calculate genetracks size
-    genetable$gene.ymax <- -1 + (gene.width/2)
-    genetable$gene.ymin <- -1 - (gene.width/2)
-    exontable$exon.ymax <- -1 + (exon.width/2)
-    exontable$exon.ymin <- -1 - (exon.width/2)
+    genetable$gene.ymax <- genetable$stacks + (gene.width/2)
+    genetable$gene.ymin <- genetable$stacks - (gene.width/2)
+    exontable$exon.ymax <- exontable$stacks + (exon.width/2)
+    exontable$exon.ymin <- exontable$stacks - (exon.width/2)
 
 
-    
     ##plot
-    p1+
+    p1 <-
+        p1+
         geom_rect(data= genetable,
                   aes(xmin = txStart, xmax=txEnd, ymin = gene.ymin,
                       ymax = gene.ymax),inherit.aes = FALSE) +
@@ -87,7 +108,15 @@ genetracks.refseq <- function(){
                                         ymax = ymax), alpha = 0.02,inherit.aes = FALSE) +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(),
-              axis.line = element_line(colour = "grey")) +
-        geom_text(data = genetable,aes(x = midpoint,y=-2, label = name2, angle = 90), size = 2, nudge_x = 0, nudge_y =0, check_overlap = FALSE) +
+              axis.line = element_line(colour = "grey"))
+    if(stack.level == 1){
+        p1 + geom_text(data = genetable,aes(x = midpoint,y=-2, label = name2, angle = 90), size = 2, nudge_x = 0, nudge_y =0,
+                  check_overlap = FALSE, inherit.aes = FALSE) +
         ylim(-2,ymax)
+    } else {
+        p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = 2, nudge_x = 0, nudge_y =0,
+                  check_overlap = FALSE, inherit.aes = FALSE) +
+        ylim(-4,ymax)
+    }
+        
 }

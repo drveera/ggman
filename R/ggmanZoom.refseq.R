@@ -48,6 +48,7 @@ ggmanZoom.refseq <- function(
                       genome = "hg19",
                       exon.width = 0.5,
                       gene.width = 0.05,
+                      stack.level=1,
                       ...
                       ){
     ##check inputs
@@ -61,8 +62,9 @@ ggmanZoom.refseq <- function(
         dfm.sub <- dfm[dfm$bp >= start.position & dfm$bp <= end.position & dfm$chrom == chromosome,]
     }
 
-    if(! is.na(highlight.group)){
+    if(!is.na(highlight.group)){
         dfm.sub$group = dfm.sub[,highlight.group]
+        print(head(dfm.sub))
     }
     
     xtick1 <- min(dfm.sub$index)
@@ -100,6 +102,7 @@ ggmanZoom.refseq <- function(
         p1 + guides(colour = FALSE)
     }
     ##refseq
+    print("adding refseq")
     environment(genetracks.refseq) <- environment()
     genetracks.refseq()
     

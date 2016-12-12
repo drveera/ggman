@@ -8,7 +8,7 @@ ggmanZoom.refseq(ggmanPlot, chromosome, start.position = NA,
   end.position = NA, xlabel = NA, ylabel = NA, title = NA,
   highlight.group = NA, legend.title = "legend", legend.remove = FALSE,
   ymax = 10, ymin = 0, genome = "hg19", exon.width = 0.5,
-  gene.width = 0.05, ...)
+  gene.width = 0.05, stack.level = 1, ...)
 }
 \arguments{
 \item{ggmanPlot}{A ggplot object of class 'ggman'}
