@@ -94,7 +94,7 @@ ggman <- function(gwas,
     ##check the inputs    
     environment(check.input.ggman) <- environment()
     check.input.ggman()
-    dfm <- gwas
+    dfm <- as.data.frame(gwas)
     dfm$gwas <- as.data.frame(gwas)
     dfm$chrom <- gwas[,chrom]
     dfm$bp <- as.numeric(as.character(gwas[,bp]))
