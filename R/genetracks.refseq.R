@@ -19,7 +19,7 @@ genetracks.refseq <- function(){
 
     ##query
     mysession = browserSession("UCSC")
-    genome(mysession) <- "hg19"
+    genome(mysession) <- genome
 
     mytable <- getTable(ucscTableQuery(mysession,
                                        track = "refGene",
@@ -64,25 +64,30 @@ genetracks.refseq <- function(){
     exontable$exon.start <- as.numeric(as.character(exontable$exon.start))
     exontable$exon.end <- as.numeric(as.character(exontable$exon.end))
 
+    ##calculate genetracks size
+    genetable$gene.ymax <- -1 + (gene.width/2)
+    genetable$gene.ymin <- -1 - (gene.width/2)
+    exontable$exon.ymax <- -1 + (exon.width/2)
+    exontable$exon.ymin <- -1 - (exon.width/2)
+
+
+    
     ##plot
-#    return(
-#        p1 +
-#       geom_rect(data= genetable, aes(xmin = txStart, xmax=txEnd,ymin = -0.01, ymax = 0.01),inherit.aes = FALSE)
-#    )
-
-
     p1+
-        geom_rect(data= genetable, aes(xmin = txStart, xmax=txEnd,
-                                       ymin = -1.01, ymax = -0.99),inherit.aes = FALSE) +
-        geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end,
-                                        ymin = -1.05, ymax = -0.95),inherit.aes = FALSE) +
-        geom_rect(data = genetable,aes(ymin = -1.01, ymax = ymax,
+        geom_rect(data= genetable,
+                  aes(xmin = txStart, xmax=txEnd, ymin = gene.ymin,
+                      ymax = gene.ymax),inherit.aes = FALSE) +
+        geom_rect(data = exontable,
+                  aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
+                      ymax = exon.ymax),inherit.aes = FALSE) +
+        geom_rect(data = genetable,aes(ymin = gene.ymin, ymax = ymax,
                                        xmin = txStart, xmax= txEnd),
                   alpha = 0.05, inherit.aes = FALSE) +
-        geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = -1.05,
+        geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
                                         ymax = ymax), alpha = 0.02,inherit.aes = FALSE) +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(),
               axis.line = element_line(colour = "grey")) +
-        geom_text(data = genetable,aes(x = midpoint,y=-2, label = name2, angle = 90), size = 2, nudge_x = 0, nudge_y =0, check_overlap = FALSE)
+        geom_text(data = genetable,aes(x = midpoint,y=-2, label = name2, angle = 90), size = 2, nudge_x = 0, nudge_y =0, check_overlap = FALSE) +
+        ylim(-2,ymax)
 }

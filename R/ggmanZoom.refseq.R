@@ -44,6 +44,10 @@ ggmanZoom.refseq <- function(
                       legend.title = "legend",
                       legend.remove = FALSE,
                       ymax=10,
+                      ymin=0,
+                      genome = "hg19",
+                      exon.width = 0.5,
+                      gene.width = 0.05,
                       ...
                       ){
     ##check inputs
@@ -96,7 +100,6 @@ ggmanZoom.refseq <- function(
         p1 + guides(colour = FALSE)
     }
     ##refseq
-    ymax=10
     environment(genetracks.refseq) <- environment()
     genetracks.refseq()
     
