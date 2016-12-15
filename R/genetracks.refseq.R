@@ -42,15 +42,17 @@ genetracks.refseq <- function(){
 
     ## list the name2
     name2 <- with(mytable, as.character(name2[!duplicated(name2)]))
-    if(stack.level == 1){
-        stacks <- rep(-1,length(name2))
-    }
-    if(stack.level == 2){
-        stacks <- rep(c(-1,-2),length(name2))[1:length(name2)]
-    }
-    if(stack.level == 3){
-        stacks <- rep(c(-1,-2,-3), length(name2))[1:length(name2)]
-    }
+#    if(stack.level == 1){
+#        stacks <- rep(-1,length(name2))
+#    }
+#    if(stack.level == 2){
+#        stacks <- rep(c(-1,-2),length(name2))[1:length(name2)]
+#    }
+#    if(stack.level == 3){
+#        stacks <- rep(c(-1,-2,-3), length(name2))[1:length(name2)]
+#    }
+
+    stacks <- rep((-1 * (1:stack.level)),length(name2))[1:length(name2)]
     stack.dfm <- data.frame(name2,stacks)
 
     ##add to mytable
@@ -61,12 +63,12 @@ genetracks.refseq <- function(){
 
     ##get the longest transcript
     mytable.split <- lapply(mytable.split, function(x) {
-        return(x[x$genesize == max(x$genesize)[1],])
+        dfm <- x[x$genesize == max(x$genesize)[1],]
+        dfm <- dfm[!duplicated(dfm$name2),]
     })
 
 
     genetable <- do.call(rbind,mytable.split)
-    genetable <- genetable[!duplicated(genetable$name2),]
 
     ##melt in to exons
     mytable.split <- lapply(mytable.split, function(x){
@@ -79,7 +81,7 @@ genetracks.refseq <- function(){
     })
 
     ##combine in to sigle data frame
-    exontable <- do.call(rbind,mytable.split)
+    exontable <<- do.call(rbind,mytable.split)
     ##column classes
     exontable$exon.start <- as.numeric(as.character(exontable$exon.start))
     exontable$exon.end <- as.numeric(as.character(exontable$exon.end))
@@ -101,23 +103,17 @@ genetracks.refseq <- function(){
         geom_rect(data = exontable,
                   aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
                       ymax = exon.ymax, fill = as.factor(strand)),inherit.aes = FALSE) +
+                geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
+                                                ymax = ymax, fill = as.factor(strand)),
+                          alpha = 0.03,inherit.aes = FALSE) +
         geom_rect(data = genetable,aes(ymin = gene.ymin, ymax = ymax,
                                        xmin = txStart, xmax= txEnd,fill = as.factor(strand)),
-                  alpha = 0.05, inherit.aes = FALSE) +
-        geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
-                                        ymax = ymax, fill = as.factor(strand)), alpha = 0.02,inherit.aes = FALSE) +
+                  alpha = 0.02, inherit.aes = FALSE) +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(),
               axis.line = element_line(colour = "grey")) +
-        scale_fill_grey() + labs(fill="strand")
-    if(stack.level == 1){
-        p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = 2, nudge_x = 0, nudge_y =0,
-                  check_overlap = FALSE, inherit.aes = FALSE) +
-        ylim(-2,ymax)
-    } else {
-        p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = 2, nudge_x = 0, nudge_y =0,
-                  check_overlap = FALSE, inherit.aes = FALSE) +
-        ylim(-4,ymax)
-    }
-        
+        scale_fill_grey(start=0.3,end=0.7) + labs(fill="strand")
+    p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = 2, nudge_x = 0, nudge_y =0,
+                   check_overlap = FALSE, inherit.aes = FALSE) +
+        ylim(-1-(as.numeric(stack.level)), ymax)
 }
