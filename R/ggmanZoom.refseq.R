@@ -50,6 +50,7 @@ ggmanZoom.refseq <- function(
                       gene.width = 0.05,
                       stack.level=1,
                       remove.overlap = FALSE,
+                      gene.text.size=2,
                       ...
                       ){
     ##check inputs
