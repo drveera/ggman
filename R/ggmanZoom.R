@@ -79,7 +79,7 @@ ggmanZoom <- function(
         ylabel = expression(paste("-log" ["10"],"P Value"))
     }
 
-    p1 <- ggplot(dfm.sub, aes(index,marker)) + geom_point(...) +
+    p1 <- ggplot(dfm.sub, aes(bp,marker)) + geom_point(...) +
         labs(x = xlabel, y = ylabel, title = title)    
 
     if(gene.tracks & !is.na(start.position) & !is.na(end.position)){
