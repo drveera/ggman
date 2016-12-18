@@ -1,4 +1,4 @@
-#' ggmanZoom
+#' ggmanZoom.refseq
 #'
 #' Zoom in to a specific region of the Manhattan Plot
 #'
@@ -6,14 +6,18 @@
 #' @param chromosome Chromosome identifier
 #' @param start.position Starting basepair position
 #' @param end.position Ending basepair position
-#' @param xlabel X axis label
+#' @param gene.tracks if TRUE, refseq gene tracks will be downloaded frm UCSC server and plotted. default is TRUE
+#' @param ymax maximum limit of y axis 
+#' @param genome genome build version; default is 'hg19' 
+#' @param exon.width width of the exons in the gene tracts; default is 0.5 
+#' @param gene.width with of the introns in the gene tracts; default is 0.05
+#' @param stack.level levels of stacking of the gene tracts; default is 1, where all the genes are plotted in single track
+#' @param gene.text.size size of gene labes below the gene tracts; default is 2
+#' @param remove.gene.text.overlap if TRUE, one of the overlapping gene text labels will be removed
+#' @param xlabel X axis label 
 #' @param ylabel Y axis label
 #' @param title Plot title
-#' @param highlight.group Name of the column containing grouping variable in the parent data.frame that was used to create main ggplot layer.
-#' @param legend.title title for legend; default is 'legend'
-#' @param legend.remove if TRUE, the legend will be removed; default is FALSE
 #' @param ... other arguments to pass to \code{\link{geom_point}}
-#'
 #' @return A regional association plot 
 #' 
 #' @examples
@@ -26,9 +30,8 @@
 #' #specific region
 #' ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695)
 #'
-#' #add highlights and legend
-#' ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695,
-#'           highlight.group = "gene", legend.title = "Genes")
+#' 
+#' 
 #' 
 #'
 #' @export
@@ -37,12 +40,17 @@ ggmanZoom <- function(
                       chromosome,
                       start.position=NA,
                       end.position=NA,
+                      gene.tracks = TRUE,
+                      ymax=10,
+                      genome = "hg19",
+                      exon.width = 0.5,
+                      gene.width = 0.05,
+                      stack.level=1,
+                      remove.gene.text.overlap = FALSE,
+                      gene.text.size=2,
                       xlabel = NA,
                       ylabel = NA,
                       title = NA,
-                      highlight.group = NA,
-                      legend.title = "legend",
-                      legend.remove = FALSE,
                       ...
                       ){
     ##check inputs
@@ -55,20 +63,10 @@ ggmanZoom <- function(
     } else {
         dfm.sub <- dfm[dfm$bp >= start.position & dfm$bp <= end.position & dfm$chrom == chromosome,]
     }
-
-    if(! is.na(highlight.group)){
-        dfm.sub$group = dfm.sub[,highlight.group]
-    }
     
-    xtick1 <- min(dfm.sub$index)
-    xtick1.label <- min(dfm.sub$bp)
-    xtick3 <- max(dfm.sub$index)
-    xtick3.label <- max(dfm.sub$bp)
-    xtick2 <- dfm.sub$index[nrow(dfm.sub)/2]
-    xtick2.label <- dfm.sub[dfm.sub$index == xtick2,]$bp
-    xbreaks <- c(xtick1,xtick2,xtick3)
-    xlabels <- c(xtick1.label,xtick2.label,xtick3.label)
-    title <- "Regional association plot"
+    if(is.na(title)){
+        title <- "Regional association plot"
+    }
     if(is.na(xlabel)){
         if(is.na(start.position)){
             xlabel = paste0("Chromosome",chromosome)
@@ -81,21 +79,14 @@ ggmanZoom <- function(
         ylabel = expression(paste("-log" ["10"],"P Value"))
     }
 
-    if(is.na(highlight.group)){
-        p1 <- ggplot(dfm.sub, aes(index,marker)) + geom_point(...) +
-        scale_x_continuous(breaks = xbreaks, labels = xlabels) +
+    p1 <- ggplot(dfm.sub, aes(index,marker)) + geom_point(...) +
         labs(x = xlabel, y = ylabel, title = title)    
-    } else {
-            p1 <- ggplot(dfm.sub, aes(index,marker, colour = as.factor(group))) + geom_point(...) +
-        scale_x_continuous(breaks = xbreaks, labels = xlabels) +
-        labs(x = xlabel, y = ylabel, title = title, colour = legend.title)
-    }
 
-    if(legend.remove){
-        p1 + guides(colour = FALSE)
+    if(gene.tracks & !is.na(start.position) & !is.na(end.position)){
+        ##refseq
+        environment(genetracks.refseq) <- environment()
+        genetracks.refseq()
     } else {
-        p1
+        return(p1)
     }
-
-    
 }

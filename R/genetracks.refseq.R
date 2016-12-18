@@ -42,15 +42,6 @@ genetracks.refseq <- function(){
 
     ## list the name2
     name2 <- with(mytable, as.character(name2[!duplicated(name2)]))
-#    if(stack.level == 1){
-#        stacks <- rep(-1,length(name2))
-#    }
-#    if(stack.level == 2){
-#        stacks <- rep(c(-1,-2),length(name2))[1:length(name2)]
-#    }
-#    if(stack.level == 3){
-#        stacks <- rep(c(-1,-2,-3), length(name2))[1:length(name2)]
-#    }
 
     stacks <- rep((-1 * (1:stack.level)),length(name2))[1:length(name2)]
     stack.dfm <- data.frame(name2,stacks)

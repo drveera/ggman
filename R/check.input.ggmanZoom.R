@@ -60,25 +60,5 @@ check.input.ggmanZoom <- function(){
         }
     }
 
-    ## highlight.group
-    if(! is.na(highlight.group)){
-        if(! is.character(highlight.group)){
-            stop("The highlight.group input is not character")
-        }
-
-        if(! highlight.group %in% names(ggmanPlot[[1]])){
-            stop(paste0("The column ", highlight.group," is not present in the parent data.frame"))
-        }        
-    }
-
-    ## legend.title
-    if(! is.character(legend.title)){
-        stop("The legend.title input is not a character")
-    }
-
-    ## legend.remove
-    if(! is.logical(legend.remove)){
-        stop("The legend.remove input is not logical")
-    }
     
 }

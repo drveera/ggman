@@ -1,4 +1,4 @@
-#' ggmanZoom.refseq
+#' ggmanZoom
 #'
 #' Zoom in to a specific region of the Manhattan Plot
 #'
@@ -32,7 +32,7 @@
 #' 
 #'
 #' @export
-ggmanZoom.refseq <- function(
+ggmanZoom <- function(
                       ggmanPlot,
                       chromosome,
                       start.position=NA,
@@ -43,14 +43,6 @@ ggmanZoom.refseq <- function(
                       highlight.group = NA,
                       legend.title = "legend",
                       legend.remove = FALSE,
-                      ymax=10,
-                      ymin=0,
-                      genome = "hg19",
-                      exon.width = 0.5,
-                      gene.width = 0.05,
-                      stack.level=1,
-                      remove.overlap = FALSE,
-                      gene.text.size=2,
                       ...
                       ){
     ##check inputs
@@ -64,9 +56,8 @@ ggmanZoom.refseq <- function(
         dfm.sub <- dfm[dfm$bp >= start.position & dfm$bp <= end.position & dfm$chrom == chromosome,]
     }
 
-    if(!is.na(highlight.group)){
+    if(! is.na(highlight.group)){
         dfm.sub$group = dfm.sub[,highlight.group]
-        print(head(dfm.sub))
     }
     
     xtick1 <- min(dfm.sub$index)
@@ -91,21 +82,20 @@ ggmanZoom.refseq <- function(
     }
 
     if(is.na(highlight.group)){
-        p1 <- ggplot(dfm.sub, aes(bp,marker)) + geom_point(...) +
-#        scale_x_continuous(breaks = xbreaks, labels = xlabels) +
+        p1 <- ggplot(dfm.sub, aes(index,marker)) + geom_point(...) +
+        scale_x_continuous(breaks = xbreaks, labels = xlabels) +
         labs(x = xlabel, y = ylabel, title = title)    
     } else {
-            p1 <- ggplot(dfm.sub, aes(bp,marker, colour = as.factor(group))) + geom_point(...) +
- #       scale_x_continuous(breaks = xbreaks, labels = xlabels) +
+            p1 <- ggplot(dfm.sub, aes(index,marker, colour = as.factor(group))) + geom_point(...) +
+        scale_x_continuous(breaks = xbreaks, labels = xlabels) +
         labs(x = xlabel, y = ylabel, title = title, colour = legend.title)
     }
 
     if(legend.remove){
         p1 + guides(colour = FALSE)
+    } else {
+        p1
     }
-    ##refseq
-    print("adding refseq")
-    environment(genetracks.refseq) <- environment()
-    genetracks.refseq()
+
     
 }
