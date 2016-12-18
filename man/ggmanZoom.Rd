@@ -5,8 +5,9 @@
 \title{ggmanZoom}
 \usage{
 ggmanZoom(ggmanPlot, chromosome, start.position = NA, end.position = NA,
-  xlabel = NA, ylabel = NA, title = NA, highlight.group = NA,
-  legend.title = "legend", legend.remove = FALSE, ...)
+  gene.tracks = TRUE, ymax = 10, genome = "hg19", exon.width = 0.5,
+  gene.width = 0.05, stack.level = 1, remove.gene.text.overlap = FALSE,
+  gene.text.size = 2, xlabel = NA, ylabel = NA, title = NA, ...)
 }
 \arguments{
 \item{ggmanPlot}{A ggplot object of class 'ggman'}
@@ -17,17 +18,27 @@ ggmanZoom(ggmanPlot, chromosome, start.position = NA, end.position = NA,
 
 \item{end.position}{Ending basepair position}
 
+\item{gene.tracks}{if TRUE, refseq gene tracks will be downloaded frm UCSC server and plotted. default is TRUE}
+
+\item{ymax}{maximum limit of y axis}
+
+\item{genome}{genome build version; default is 'hg19'}
+
+\item{exon.width}{width of the exons in the gene tracts; default is 0.5}
+
+\item{gene.width}{with of the introns in the gene tracts; default is 0.05}
+
+\item{stack.level}{levels of stacking of the gene tracts; default is 1, where all the genes are plotted in single track}
+
+\item{remove.gene.text.overlap}{if TRUE, one of the overlapping gene text labels will be removed}
+
+\item{gene.text.size}{size of gene labes below the gene tracts; default is 2}
+
 \item{xlabel}{X axis label}
 
 \item{ylabel}{Y axis label}
 
 \item{title}{Plot title}
-
-\item{highlight.group}{Name of the column containing grouping variable in the parent data.frame that was used to create main ggplot layer.}
-
-\item{legend.title}{title for legend; default is 'legend'}
-
-\item{legend.remove}{if TRUE, the legend will be removed; default is FALSE}
 
 \item{...}{other arguments to pass to \code{\link{geom_point}}}
 }
@@ -47,9 +58,8 @@ ggmanZoom(p1, chromosome = 1)
 #specific region
 ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695)
 
-#add highlights and legend
-ggmanZoom(p1, chromosome = 1, start.position = 215388741, end.position = 238580695,
-          highlight.group = "gene", legend.title = "Genes")
+
+
 
 
 }
