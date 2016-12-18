@@ -1,4 +1,4 @@
-#' ggmanZoom
+#' ggmanZoom.old
 #'
 #' Zoom in to a specific region of the Manhattan Plot
 #'
@@ -32,7 +32,7 @@
 #' 
 #'
 #' @export
-ggmanZoom <- function(
+ggmanZoom.old <- function(
                       ggmanPlot,
                       chromosome,
                       start.position=NA,

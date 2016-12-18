@@ -1,4 +1,4 @@
-#' ggmanZoom.refseq
+#' ggmanZoom
 #'
 #' Zoom in to a specific region of the Manhattan Plot
 #'
