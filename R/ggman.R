@@ -95,12 +95,10 @@ ggman <- function(gwas,
     environment(check.input.ggman) <- environment()
     check.input.ggman()
     dfm <- as.data.frame(gwas)
-    dfm$gwas <- as.data.frame(gwas)
-    dfm$chrom <- gwas[,chrom]
-    dfm$bp <- as.numeric(as.character(gwas[,bp]))
-    dfm$pvalue <- as.numeric(as.character(gwas[,pvalue]))
-    dfm$snp <- gwas[,snp]
-    #dfm <- data.frame(chrom,bp,snp,pvalue)
+    dfm$chrom <- dfm[,chrom]
+    dfm$bp <- as.numeric(as.character(dfm[,bp]))
+    dfm$pvalue <- as.numeric(as.character(dfm[,pvalue]))
+    dfm$snp <- dfm[,snp]
     dfm$chrom <- as.character(dfm$chrom)
 
     ##add index
@@ -155,11 +153,11 @@ ggman <- function(gwas,
     ##invert
     if(invert){
         if(invert.method == 'or'){                        
-            dfm$or <- as.numeric(as.character(gwas[,invert.var]))
+            dfm$or <- as.numeric(as.character(dfm[,invert.var]))
             dfm$sign <- with(dfm, replace(pvalue,or > 1, 1))
             dfm$sign <- with(dfm, replace(sign, sign != 1, -1))
         } else {
-            dfm$beta <- as.numeric(as.character(gwas[,invert.var]))
+            dfm$beta <- as.numeric(as.character(dfm[,invert.var]))
             dfm$sign <- with(dfm, replace(beta, beta > 0, 1))
             dfm$sign <- with(dfm, replace(sign, sign != 1, -1))
         }
