@@ -26,37 +26,46 @@ check.input.ggman <- function(){
     if(!any(class(gwas) == "data.frame")){
         stop("The gwas input is not a data frame")
     }
-    ## snp input
-    if(class(snp) != "character"){
-        stop("The snp input is not a character")
-    }
-    if(!snp %in% names(gwas)){
-        stop(paste0("The column \'",snp,"\' is not present in the input data frame"))
-    }
-    ## bp input
-    if(class(bp) != "character"){
-        stop("The bp input is not a character")
-    }
-    if(! bp %in% names(gwas)){
-        stop(paste0("The column \'",bp,"\' is not present in the input data frame"))
-    }
 
-    ##chrom input
-    if(class(chrom) != "character"){
-        stop("The chrom input is not a character")
-    }
-    if(! chrom %in% names(gwas)){
-        stop(paste0("The column \'",chrom,"\' is not present in the input data frame"))
-    }
+    dfmnames <- names(gwas)
 
-    ## pvalue input
-    if(class(pvalue) != "character"){
-        stop("The pvalue input is not a character")
-    }
-    if(! pvalue %in% names(gwas)){
-        stop(paste0("The column \'",pvalue,"\' is not present in the input data frame"))
-    }
+        ##chrom input
+        if(class(chrom) != "character"){
+            stop("The chrom input is not a character")
+        }
+        if(! chrom %in% names(gwas)){
+            stop(paste0("The column \'",chrom,"\' is not present in the input data frame"))
+        }
 
+
+
+        if(class(snp) != "character"){
+            stop("The snp input is not a character")
+        }
+        if(!snp %in% names(gwas)){
+            stop(paste0("The column \'",snp,"\' is not present in the input data frame"))
+        }
+    
+
+
+        ## bp input
+        if(class(bp) != "character"){
+            stop("The bp input is not a character")
+        }
+        if(! bp %in% names(gwas)){
+            stop(paste0("The column \'",bp,"\' is not present in the input data frame"))
+        }
+
+
+        ## pvalue input
+        if(class(pvalue) != "character"){
+            stop("The pvalue input is not a character")
+        }
+        if(! pvalue %in% names(gwas)){
+            stop(paste0("The column \'",pvalue,"\' is not present in the input data frame"))
+        }
+
+   
     ## sigline input
     if(!is.na(sigLine)){
         if(!is.numeric(sigLine)){

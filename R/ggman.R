@@ -78,7 +78,7 @@ utils::globalVariables(c("index","marker","chrom_alt","group","xbreaks"))
 #' @export
 ggman <- function(gwas,
                   clumps = NA,
-                  snp = "snp", bp = "bp", chrom = "chrom", pvalue = "pvalue",
+                  snp = NA, bp = NA, chrom = NA, pvalue = NA,
                   sigLine = 8,
                   lineColour = "red",
                   pointSize = 0.1,
@@ -91,9 +91,45 @@ ggman <- function(gwas,
 
     ##define global variables to escape R CMD check
    
-    ##check the inputs    
+
+    dfmnames <- names(gwas)
+        ## chrom input
+    if(is.na(chrom)){
+        chrom <- search.names(c("chr","chrom","chromosome"), dfmnames)
+        if(is.null(chrom)){
+            stop("Couldn't find the chromosome column.
+Specify the name of the column with chromosome ids")
+        }
+    }
+
+        if(is.na(snp)){
+        snp <- search.names(c("snp","rsid"), dfmnames)
+        if(is.null(snp)){
+            stop("Couldn't find the snp column.
+Specify the name of the column with snp ids")
+        }
+        }
+
+        if(is.na(bp)){
+        bp <- search.names(c("bp","basepair","position","start"),dfmnames)
+        if(is.null(bp)){
+            stop("Couldn't find the bp column.
+Specify the name of the column with bp ids")
+        }
+        }
+        if(is.na(pvalue)){
+        pvalue <- search.names(c("p","pval","pvalue"), dfmnames)
+        if(is.null(pvalue)){
+            stop("Couldn't find the pvalue column.
+Specify the name of the column with pvalues")
+        }
+        }
+
+    
+    ##check the inputs
     environment(check.input.ggman) <- environment()
     check.input.ggman()
+
     dfm <- as.data.frame(gwas)
     dfm$chrom <- dfm[,chrom]
     dfm$bp <- as.numeric(as.character(dfm[,bp]))

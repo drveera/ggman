@@ -4,13 +4,13 @@
 \alias{ggman}
 \title{Creates a Manhattan Plot.}
 \usage{
-ggman(gwas, clumps = NA, snp = "snp", bp = "bp", chrom = "chrom",
-  pvalue = "pvalue", sigLine = 8, lineColour = "red", pointSize = 0.1,
-  ymin = NA, ymax = NA, logTransform = TRUE, invert = FALSE,
-  invert.method = "or", invert.var = "or", relative.positions = FALSE,
-  xlabel = "chromosome", ylabel = "-log10(P value)",
-  title = "Manhattan Plot", legend.title = "legend",
-  clumps.label.type = "label", legend.remove = FALSE, ...)
+ggman(gwas, clumps = NA, snp = NA, bp = NA, chrom = NA, pvalue = NA,
+  sigLine = 8, lineColour = "red", pointSize = 0.1, ymin = NA,
+  ymax = NA, logTransform = TRUE, invert = FALSE, invert.method = "or",
+  invert.var = "or", relative.positions = FALSE, xlabel = "chromosome",
+  ylabel = "-log10(P value)", title = "Manhattan Plot",
+  legend.title = "legend", clumps.label.type = "label",
+  legend.remove = FALSE, ...)
 }
 \arguments{
 \item{gwas}{A data frame with the gwas results}
