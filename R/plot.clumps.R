@@ -68,8 +68,8 @@ plot.clumps <- function(){
     ##plot2
     if(is.na(clumps$clump.groups)[1]){
 
-        p1 <-  p1 + geom_point(data = dfm.sub, size=pointSize, colour = "blue") +
-            geom_point(data = index.dfm, size = pointSize+1, colour = "blue", shape = 5) +
+        p1 <-  p1 + geom_point(data = dfm.sub, size=pointSize, colour = clumps.colour) +
+            geom_point(data = index.dfm, size = pointSize+1, colour = clumps.colour, shape = 5) +
             labs(x = xlabel, y = ylabel, title = title)
     } else {
 

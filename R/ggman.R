@@ -13,6 +13,7 @@ utils::globalVariables(c("index","marker","chrom_alt","group","xbreaks"))
 #' @param gwas A data frame with the gwas results
 #' @param clumps Optional argument; takes an object of class 'ggclumps' containing
 #' the SNP clumps, see \code{\link{ggmanClumps}}
+#' @param clumps.colour colour of the clumps
 #' @param snp Name of the column containing SNP identifiers; default is 'snp'
 #' @param bp Name of the column containing the basepair positions; default is 'bp'
 #' @param chrom Name of the column containing the chromosome identifers; default is 'chrom'
@@ -78,6 +79,7 @@ utils::globalVariables(c("index","marker","chrom_alt","group","xbreaks"))
 #' @export
 ggman <- function(gwas,
                   clumps = NA,
+                  clumps.colour = "blue",
                   snp = NA, bp = NA, chrom = NA, pvalue = NA,
                   sigLine = 8,
                   lineColour = "red",
