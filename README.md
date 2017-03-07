@@ -14,7 +14,7 @@ The package is currently under development.  Please raise issues for any bugs yo
 
 ```
 library(devtools)
-install_github("veera-dr/ggman")
+install_github("drveera/ggman")
 ```
 
 ##Quick Reference 
