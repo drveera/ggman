@@ -14,6 +14,7 @@
 #' @param stack.level levels of stacking of the gene tracts; default is 1, where all the genes are plotted in single track
 #' @param gene.text.size size of gene labes below the gene tracts; default is 2
 #' @param remove.gene.text.overlap if TRUE, one of the overlapping gene text labels will be removed
+#' @param track_guides default FALSE
 #' @param xlabel X axis label 
 #' @param ylabel Y axis label
 #' @param title Plot title
@@ -47,6 +48,7 @@ ggmanZoom <- function(
                       gene.width = 0.05,
                       stack.level=1,
                       remove.gene.text.overlap = FALSE,
+                      track_guides = FALSE,
                       gene.text.size=2,
                       xlabel = NA,
                       ylabel = NA,
