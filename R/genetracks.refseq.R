@@ -101,7 +101,7 @@ genetracks.refseq <- function(){
               panel.background = element_blank(),
               axis.line = element_line(colour = "grey")) +
         scale_fill_grey(start=0.3,end=0.7) + labs(fill="strand")
-    p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = gene.text.size, nudge_x = 0, nudge_y =0,
+    p1 <-  p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = gene.text.size, nudge_x = 0, nudge_y =0,
                    check_overlap = remove.gene.text.overlap, inherit.aes = FALSE) +
         ylim(-1-(as.numeric(stack.level)), ymax)
     if (track_guides){
