@@ -94,9 +94,6 @@ genetracks.refseq <- function(){
         geom_rect(data = exontable,
                   aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
                       ymax = exon.ymax, fill = as.factor(strand)),inherit.aes = FALSE) +
-                geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
-                                                ymax = ymax, fill = as.factor(strand)),
-                          alpha = 0.03,inherit.aes = FALSE) +
         theme(panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
               panel.background = element_blank(),
               axis.line = element_line(colour = "grey")) +
@@ -105,8 +102,12 @@ genetracks.refseq <- function(){
                    check_overlap = remove.gene.text.overlap, inherit.aes = FALSE) +
         ylim(-1-(as.numeric(stack.level)), ymax)
     if (track_guides){
-            p1 + geom_rect(data = genetable,aes(ymin = gene.ymin, ymax = ymax,
+            p1 <- p1 + geom_rect(data = genetable,aes(ymin = gene.ymin, ymax = ymax,
                                        xmin = txStart, xmax= txEnd,fill = as.factor(strand)),
-                  alpha = 0.02, inherit.aes = FALSE) 
+                                 alpha = 0.02, inherit.aes = FALSE) +
+            geom_rect(data = exontable, aes(xmin=exon.start,xmax=exon.end, ymin = exon.ymin,
+                                                ymax = ymax, fill = as.factor(strand)),
+                          alpha = 0.03,inherit.aes = FALSE) 
     }
+    p1
 }
