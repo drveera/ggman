@@ -98,9 +98,16 @@ genetracks.refseq <- function(){
               panel.background = element_blank(),
               axis.line = element_line(colour = "grey")) +
         scale_fill_grey(start=0.3,end=0.7) + labs(fill="strand")
-    p1 <-  p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = gene.text.size, nudge_x = 0, nudge_y =0,
-                   check_overlap = remove.gene.text.overlap, inherit.aes = FALSE) +
-        ylim(-1-(as.numeric(stack.level)), ymax)
+    if (gene.position == "bottom"){
+            p1 <-  p1 + geom_text(data = genetable,aes(x = midpoint,y=-0.3+gene.ymin, label = name2, angle = 0), size = gene.text.size, nudge_x = 0, nudge_y =0,
+                   check_overlap = remove.gene.text.overlap, inherit.aes = FALSE) +  ylim(-1-(as.numeric(stack.level)), ymax)
+    } else if (gene.position == "left"){
+            p1 <-  p1 + geom_text(data = genetable,aes(x = txStart - 10000 ,y = gene.ymin + (gene.ymax - gene.ymin)/2, label = name2, angle = 0, hjust = "right"), size = gene.text.size, nudge_x = 0, nudge_y =0,
+                   check_overlap = remove.gene.text.overlap, inherit.aes = FALSE) +  ylim(-1-(as.numeric(stack.level)), ymax)
+    } else if (gene.position == "right"){
+            p1 <-  p1 + geom_text(data = genetable,aes(x = txEnd + 10000, y=gene.ymin + (gene.ymax - gene.ymin)/2, label = name2, angle = 0, hjust = "left"), size = gene.text.size, nudge_x = 0, nudge_y =0,
+                   check_overlap = remove.gene.text.overlap, inherit.aes = FALSE) +  ylim(-1-(as.numeric(stack.level)), ymax)
+    }
     if (track_guides){
             p1 <- p1 + geom_rect(data = genetable,aes(ymin = gene.ymin, ymax = ymax,
                                        xmin = txStart, xmax= txEnd,fill = as.factor(strand)),

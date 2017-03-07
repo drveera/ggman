@@ -50,6 +50,7 @@ ggmanZoom <- function(
                       remove.gene.text.overlap = FALSE,
                       track_guides = FALSE,
                       gene.text.size=2,
+                      gene.position="bottom",
                       xlabel = NA,
                       ylabel = NA,
                       title = NA,
