@@ -45,8 +45,8 @@ plot.clumps <- function(){
     pvalues.dfm <- dfm[,c("snp","pvalue","marker")]
     clump.dfm <- merge(clump.dfm,pvalues.dfm, by = "snp")
     ## get the positions
-    positions.dfm <- dfm[,c("snp","index")]
-    names(positions.dfm)[1] <- "index.snp" 
+    positions.dfm <- dfm[,c("snp","index","chrom")]
+  names(positions.dfm)[1] <- "index.snp"
   dfm.sub <- merge(clump.dfm,positions.dfm,by = "index.snp",all.x=TRUE)
     ##use dfm.sub to plot the clumps and dfm to plot all other points
     ##remove the clumped snps from main dfm
