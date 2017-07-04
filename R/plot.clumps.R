@@ -48,8 +48,6 @@ plot.clumps <- function(){
     positions.dfm <- dfm[,c("snp","index")]
     names(positions.dfm)[1] <- "index.snp" 
   dfm.sub <- merge(clump.dfm,positions.dfm,by = "index.snp",all.x=TRUE)
-  gwasname <- basename(gwas)
-  write.table(dfm.sub,paste0(gwas,".clumped.positions.txt"),sep="\t",row.names=FALSE,quote=FALSE)
     ##use dfm.sub to plot the clumps and dfm to plot all other points
     ##remove the clumped snps from main dfm
     dfm <- dfm[!dfm$snp %in% clump.dfm$snp,]
@@ -95,5 +93,5 @@ plot.clumps <- function(){
     if(legend.remove){
         p1 <- p1 + guides(fill = FALSE)
     }
-return(p1)
+return(list(p1,dfm.sub))
 }
