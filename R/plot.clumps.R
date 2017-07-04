@@ -16,7 +16,7 @@ plot.clumps <- function(){
         if(! is.na(clumps$clump.groups)[1]){
             clump.groups <- rep(clumps$clump.groups[i],length(snp))
         } else {
-            clump.groups <- rep(NA,length(snp))            
+            clump.groups <- rep(NA,length(snp))
         }
         if(! is.na(clumps$clump.labels)[1]){
             clump.labels <- rep(clumps$clump.labels[i],length(snp))
@@ -27,7 +27,7 @@ plot.clumps <- function(){
     }
     clump.dfm <- do.call(rbind,clump.dfm.lst)
     clump.dfm <- as.data.frame(clump.dfm)
-    
+
     ##change the positions of clumped snps
 
     ##create a seperate dfm for index snp
@@ -47,7 +47,9 @@ plot.clumps <- function(){
     ## get the positions
     positions.dfm <- dfm[,c("snp","index")]
     names(positions.dfm)[1] <- "index.snp" 
-    dfm.sub <- merge(clump.dfm,positions.dfm,by = "index.snp",all.x=TRUE)
+  dfm.sub <- merge(clump.dfm,positions.dfm,by = "index.snp",all.x=TRUE)
+  gwasname <- basename(gwas)
+  write.table(dfm.sub,paste0(gwas,".clumped.positions.txt"),sep="\t",row.names=FALSE,quote=FALSE)
     ##use dfm.sub to plot the clumps and dfm to plot all other points
     ##remove the clumped snps from main dfm
     dfm <- dfm[!dfm$snp %in% clump.dfm$snp,]
@@ -63,8 +65,8 @@ plot.clumps <- function(){
         geom_hline(aes(yintercept= as.numeric(sigLine)),colour = "red", size = 0.25) +
         scale_y_continuous(expand = c(0,0), limits = c(ymin,ymax))  +
         guides(colour = FALSE) +
-        scale_colour_grey(start = 0.4,end=0.6)   
-    
+        scale_colour_grey(start = 0.4,end=0.6) 
+
     ##plot2
     if(is.na(clumps$clump.groups)[1]){
 
@@ -77,10 +79,10 @@ plot.clumps <- function(){
                                colour = alpha("black",0)) +
             geom_point(data = index.dfm, aes(fill = as.factor(clump.groups)),size = pointSize+1, shape =23,
                                colour = alpha("black",0)) +
-            labs(x = xlabel, y = ylabel, title = title, fill = legend.title)        
+            labs(x = xlabel, y = ylabel, title = title, fill = legend.title)
     }
 
-    
+
     if(!is.na(clumps$clump.labels)[1]){
         if(clumps.label.type == 'label'){
             p1 <- p1 + geom_label_repel(data = index.dfm, aes(x = index, y = marker,label = clump.labels),colour = "black")
