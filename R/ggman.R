@@ -80,7 +80,7 @@ utils::globalVariables(c("index","marker","chrom_alt","group","xbreaks"))
 ggman <- function(gwas,
                   clumps = NA,
                   clumps.colour = "blue",
-                  snp = NA, bp = NA, chrom = NA, pvalue = NA,
+                  snp = NA, bp = NA, chrom = NA, pvalue = NA,index=NA,
                   sigLine = 8,
                   lineColour = "red",
                   pointSize = 0.1,
@@ -139,10 +139,14 @@ Specify the name of the column with pvalues")
     dfm$snp <- dfm[,snp]
     dfm$chrom <- as.character(dfm$chrom)
 
+  if (is.na(index)){
     ##add index
     dfm <- dfm[order(dfm$bp),]
     dfm <- dfm[mixedorder(dfm$chrom),]
     dfm$index <- 1:nrow(dfm)
+  } else {
+    dfm$index <- dfm[,index]
+    }
 
     ##find the number of chromosomes
     chrtable <- data.frame(table(dfm$chrom))
