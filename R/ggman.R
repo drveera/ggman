@@ -146,6 +146,8 @@ Specify the name of the column with pvalues")
     dfm$index <- 1:nrow(dfm)
   } else {
     dfm$index <- dfm[,index]
+    dfm <- dfm[order(dfm$index),]
+    dfm <- dfm[mixedorder(dfm$chrom),]
     }
 
     ##find the number of chromosomes
