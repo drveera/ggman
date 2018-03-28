@@ -187,12 +187,16 @@ Specify the name of the column with pvalues")
             return(x)
         })
         dfm <- do.call(rbind,dfm.list)
-        
     }
 
     ##create x axis tick points
-    dfmsplit <- split(dfm, dfm$chrom)
-    xbreaks <- sapply(dfmsplit,function(x) x$index[length(x$index)/2])
+  dfmsplit <- split(dfm, dfm$chrom)
+  xbreaks <- sapply(dfmsplit,function(x) {
+    midpoint <- length(x$index)/2
+    if(midpoint <1) midpoint <- 1
+    ##x$index[length(x$index)/2]
+    return(x$index[midpoint])
+    })
 
     ##invert
     if(invert){
