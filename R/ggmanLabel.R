@@ -53,13 +53,13 @@ ggmanLabel <- function(ggmanPlot,labelDfm,
     labelDfm$label <- labelDfm[,label]
     dfm.sub <- merge(dfm,labelDfm, by = "snp")
     if (type == "label"){
-        ggmanPlot +
+        p1 <- ggmanPlot +
             geom_label_repel(data = dfm.sub, aes(label = label),...) +
             geom_point(data = dfm.sub,shape = 5)
     } else if (type == "text"){
-        ggmanPlot +
+        p1 <- ggmanPlot +
             geom_text_repel(data = dfm.sub, aes(label = label), ...) +
             geom_point(data = dfm.sub,shape = 5)
     }
-    
+    return(p1)
 }
