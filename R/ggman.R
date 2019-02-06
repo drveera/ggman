@@ -89,7 +89,8 @@ ggman <- function(gwas,
                   invert = FALSE, invert.method='or',invert.var='or',
                   relative.positions = FALSE,
                   xlabel = "chromosome", ylabel = "-log10(P value)", title = "Manhattan Plot",
-                  legend.title = "legend", clumps.label.type = 'label', legend.remove = FALSE, ...) {
+                  legend.title = "legend", clumps.label.type = 'label', legend.remove = FALSE,
+                  odd.xlabels=FALSE,...) {
 
     ##define global variables to escape R CMD check
    
@@ -196,11 +197,17 @@ Specify the name of the column with pvalues")
     if(midpoint <1) midpoint <- 1
     ##x$index[length(x$index)/2]
     return(x$index[midpoint])
-    })
+  })
 
+  if(odd.xlabels){
+    ##sort the breaks base on names
+    xbreaks <- xbreaks[mixedorder(names(xbreaks))]
+    xbreaks <- xbreaks[seq(1,length(xbreaks),2)]
+    print(xbreaks)
+  }
     ##invert
     if(invert){
-        if(invert.method == 'or'){                        
+        if(invert.method == 'or'){
             dfm$or <- as.numeric(as.character(dfm[,invert.var]))
             dfm$sign <- with(dfm, replace(pvalue,or > 1, 1))
             dfm$sign <- with(dfm, replace(sign, sign != 1, -1))
