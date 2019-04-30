@@ -1,5 +1,5 @@
 
-utils::globalVariables(c("ggmanPlot","labelDfm","label","type"))
+utils::globalVariables(c("ggmanPlot","labelDfm","snp","label","type"))
 #' This function checks the user input for the function ggmanLabel.R
 #'
 #' @keywords internal
