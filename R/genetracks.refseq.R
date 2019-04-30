@@ -41,6 +41,7 @@ genetracks.refseq <- function(){
     mytable <- mytable[order(mytable$txStart),]
 
     ## list the name2
+    mytable$name2 <- mytable$name
     name2 <- with(mytable, as.character(name2[!duplicated(name2)]))
 
     stacks <- rep((-1 * (1:stack.level)),length(name2))[1:length(name2)]
