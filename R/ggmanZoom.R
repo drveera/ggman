@@ -85,7 +85,7 @@ ggmanZoom <- function(
     p1 <- ggplot(dfm.sub, aes(bp,marker)) + geom_point(...) +
         labs(x = xlabel, y = ylabel, title = title)    
 
-    if(gene.tracks & !is.na(start.position) & !is.na(end.position)){
+    if(gene.tracks){
         ##refseq
         environment(genetracks.refseq) <- environment()
         genetracks.refseq()
