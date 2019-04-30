@@ -22,8 +22,8 @@ genetracks.refseq <- function(){
     genome(mysession) <- genome
 
     mytable <- getTable(ucscTableQuery(mysession,
-                                       track = "refGene",
-                                       table="refGene",
+                                       track = "knownGene",
+                                       table="knownGene",
                                        range=myrange))
 
     ##column classes
