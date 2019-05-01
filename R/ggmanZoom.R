@@ -44,7 +44,7 @@ ggmanZoom <- function(
                       start.position=NA,
                       end.position=NA,
                       gene.tracks = TRUE,
-                      ymax=10,
+                      ymax=NA,
                       genome = "hg19",
                       exon.width = 0.5,
                       gene.width = 0.05,
@@ -59,6 +59,7 @@ ggmanZoom <- function(
                       point.legend.title=NA,
                       point.legend.name=NA,
                       point.color="black",
+                      stackfactor=1,
                       ...
                       ){
     ##check inputs
@@ -86,16 +87,19 @@ ggmanZoom <- function(
     if(is.na(ylabel)){
         ylabel = expression(paste("-log" ["10"],"P Value"))
     }
-
+  ##ymax
+  if(is.na(ymax)){
+    ymax <- max(dfm.sub$marker+1)
+  }
     p1 <- ggplot(dfm.sub, aes(bp,marker)) + geom_point(...) +
-        labs(x = xlabel, y = ylabel, title = title)
+      labs(x = xlabel, y = ylabel, title = title)
+  scm = c(point.color)
+  names(scm) = point.legend.name
     if(gene.tracks){
         ##refseq
         environment(genetracks.refseq) <- environment()
         genetracks.refseq()
     } else {
-      scm = c(point.color)
-      names(scm) = point.legend.name
       p1 <- list(plot=p1,
                  scm.title = point.legend.title,
                  scm = scm)
