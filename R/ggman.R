@@ -251,5 +251,4 @@ Specify the name of the column with pvalues")
         class(p1) <- append(class(p1), "ggman")
         return(p1)
     }
-    
 }

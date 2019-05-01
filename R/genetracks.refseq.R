@@ -124,5 +124,17 @@ genetracks.refseq <- function(){
                                                 ymax = ymax, fill = as.factor(strand)),
                           alpha = 0.03,inherit.aes = FALSE) 
     }
-    p1 + scale_y_continuous(breaks = 0:ymax+1, labels = 0:ymax+1, limits = c(-1-(as.numeric(stack.level)), ymax)) 
+    p1 + scale_y_continuous(breaks = 0:ymax+1, labels = 0:ymax+1, limits = c(-1-(as.numeric(stack.level)), ymax))
+    if(!is.na(point.legend.title)){
+      scm = c(point.color)
+      names(scm) = point.legend.name
+      p1 <- p1 + geom_point(aes(color=point.legend.name))+
+        scale_color_manual(name=point.legend.title,
+                           values=scm)
+    }
+    class(p1) <- append(class(p1),"ggman")
+    p1 <- list(plot=p1,
+               point.legend.title=point.legend.title,
+               scm=scm)
+    return(p1)
 }

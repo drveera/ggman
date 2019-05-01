@@ -18,6 +18,8 @@
 #' @param xlabel X axis label 
 #' @param ylabel Y axis label
 #' @param title Plot title
+#' @param point.legend.title point legend title
+#' @param point.legend.name point legend name
 #' @param ... other arguments to pass to \code{\link{geom_point}}
 #' @return A regional association plot 
 #' 
@@ -54,6 +56,9 @@ ggmanZoom <- function(
                       xlabel = NA,
                       ylabel = NA,
                       title = NA,
+                      point.legend.title=NA,
+                      point.legend.name=NA,
+                      point.color="black",
                       ...
                       ){
     ##check inputs
@@ -83,13 +88,17 @@ ggmanZoom <- function(
     }
 
     p1 <- ggplot(dfm.sub, aes(bp,marker)) + geom_point(...) +
-        labs(x = xlabel, y = ylabel, title = title)    
-
+        labs(x = xlabel, y = ylabel, title = title)
     if(gene.tracks){
         ##refseq
         environment(genetracks.refseq) <- environment()
         genetracks.refseq()
     } else {
+      scm = c(point.color)
+      names(scm) = point.legend.name
+      p1 <- list(plot=p1,
+                 scm.title = point.legend.title,
+                 scm = scm)
         return(p1)
     }
 }
