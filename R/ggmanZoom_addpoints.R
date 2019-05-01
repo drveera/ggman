@@ -35,7 +35,7 @@ ggmanZoom_addpoints <- function(ggmanZoomPlot,
   names(scm) <- scmnames
   point.legend.title <- ggmanZoomPlot$point.legend.title
   p1 <- ggmanZoomPlot1 +
-    geom_point(data=dfm,aes(color=point.legend.name))+
+    geom_point(data=dfm,aes(color=point.legend.name),...)+
     scale_color_manual(name=point.legend.title,
                        values=scm)
   class(p1) <- append(class(p1), "ggman")
