@@ -19,11 +19,18 @@ genetracks.refseq <- function(){
 
     ##query
     mysession = browserSession("UCSC")
+    ##to check which tracks are available
+    ##track.names <- trackNames(ucscTableQuery(mySession))
+    ##track.names[grep("Gene",names(track.names))]
+    ##get table  names
+    ##tableNames(ucscTableQuery(mysession, track="ensGene"))
     genome(mysession) <- genome
-
+    ##trackname <- "ensGene"
+    trackname <- "wgEncodeGencodeV19"
+    tablename <- "wgEncodeGencodeBasicV19"
     mytable <- getTable(ucscTableQuery(mysession,
-                                       track = "knownGene",
-                                       table="knownGene",
+                                       track = trackname,
+                                       table=tablename,
                                        range=myrange))
 
     ##column classes
@@ -41,7 +48,6 @@ genetracks.refseq <- function(){
     mytable <- mytable[order(mytable$txStart),]
 
     ## list the name2
-    mytable$name2 <- mytable$name
     name2 <- with(mytable, as.character(name2[!duplicated(name2)]))
 
     stacks <- rep((-1 * (1:stack.level)),length(name2))[1:length(name2)]
@@ -87,6 +93,7 @@ genetracks.refseq <- function(){
 
 
     ##plot
+    p1 <- p1 + geom_hline(yintercept = 0, colour="grey", width=0.5)
     p1 <-
         p1+
         geom_rect(data= genetable,
