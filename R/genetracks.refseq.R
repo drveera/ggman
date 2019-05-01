@@ -134,7 +134,7 @@ genetracks.refseq <- function(){
     if(!is.na(point.legend.title)){
       scm = c(point.color)
       names(scm) = point.legend.name
-      p1 <- p1 + geom_point(aes(color=point.legend.name),size=0.1,...)+
+      p1 <- p1 + geom_point(aes(color=point.legend.name),...)+
         scale_color_manual(name=point.legend.title,
                            values=scm)
     }
