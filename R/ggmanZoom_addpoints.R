@@ -27,7 +27,7 @@ ggmanZoom_addpoints <- function(ggmanZoomPlot,
   ggmanZoomPlot1 <- ggmanZoomPlot[[1]]
   dfm0 <- ggmanZoomPlot1$data
   dfm <- as.data.frame(dfm)
-  dfm1 <- data.frame(snp = dfm[,snp],pvalue=dfm[,"pvalue"])
+  dfm1 <- data.frame(snp = dfm[,snp],pvalue=dfm[,pvalue])
   dfm <- merge(dfm0[,c("snp","index","bp")],dfm1,by="snp")
   dfm$marker <- -log10(dfm$pvalue)
   scmnames <- c(names(ggmanZoomPlot$scm),point.legend.name)
