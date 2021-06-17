@@ -13,7 +13,7 @@ The package is currently under development.  Please raise issues for any bugs yo
 ## Installation
 
 ```
-library(devtools)
+library(remotes)
 install_github("drveera/ggman")
 ```
 
